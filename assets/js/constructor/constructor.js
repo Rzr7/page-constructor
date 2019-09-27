@@ -1,5 +1,10 @@
+/**
+ * Represents a constructor.
+ * @constructor
+ * @param {jQuery} container - Container element for constructor.
+ */
 class Constructor {
-    constructor(block) {
-        this.block = block;
+    constructor(container) {
+        this.container = container;
     }
 }
