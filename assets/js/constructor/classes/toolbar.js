@@ -16,7 +16,7 @@
         this.toolsHtml = "";
         // this.toolArray = ['rect', 'select', 'circle']; // TODO: Change this to array of existing classes inside /tools
         this.toolArray=[];
-        this.makeTools();
+        
         
      }
 
@@ -32,6 +32,11 @@
         return fileData;
     }
 
+    add(tool) {
+        this.toolArray.push(tool);
+        this.makeTools();
+    }
+
  
 
     makeTools() {
@@ -40,18 +45,14 @@
          * Maps all of the tools into their own buttons
          * 
          */
-         
-        // import { Rectangle } from './tools/rectangle.js'
-        // const toolbar = require("./tools/rectangle.js");
-   
 
         this.toolArray.map(tool => {
+            console.log("DEBUG", tool);
             this.toolsHtml+=
             `
-            <button class="tool">`+this.toolArray[tool].toolName+`</button>
-            `
+            <button class="tool" id="`+tool.toolTip+`">`+tool.toolName+`</button>
+            ` // Later we use images to identify tools instead of names
         })
-        console.log("Finished making tools")
         this.initLayout();
 
 

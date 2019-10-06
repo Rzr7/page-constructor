@@ -5,5 +5,5 @@
 const workspace = new Builder($("#constructor"));
 
 const toolbar = new Toolbar($("#toolbar"));
-toolbar.toolArray.push(new Rectangle("Rectangle", 0, "", "Rectangle maker"));
+toolbar.add(new Rectangle("Rectangle", 0, "", "rect"));
 console.log(toolbar);
