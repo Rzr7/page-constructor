@@ -3,9 +3,8 @@
 * @param toolName - tool name 
 * @param index - tool's position in toolbar
 */
-'use strict'
 
-export class Rectangle {
+ class Rectangle {
     constructor(toolName, index, image, toolTip) {
         this.toolName = toolName;
         this.index = index;

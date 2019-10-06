@@ -14,7 +14,8 @@
      constructor(toolbar) {
         this.toolbar = toolbar
         this.toolsHtml = "";
-        this.toolArray = ['rect', 'select', 'circle']; // TODO: Change this to array of existing classes inside /tools
+        // this.toolArray = ['rect', 'select', 'circle']; // TODO: Change this to array of existing classes inside /tools
+        this.toolArray=[];
         this.makeTools();
         
      }
@@ -45,11 +46,12 @@
    
 
         this.toolArray.map(tool => {
-            this.toolsHtml = this.toolsHtml + 
+            this.toolsHtml+=
             `
-            <button class="tool">`+tool+`</button>
+            <button class="tool">`+this.toolArray[tool].toolName+`</button>
             `
         })
+        console.log("Finished making tools")
         this.initLayout();
 
 
@@ -61,7 +63,7 @@
          * 
          */
         this.toolbar[0].outerHTML=`
-        <div >
+        <div>
             <!-- Tools are in HTML form here -->
             ` + this.toolsHtml + `</div>`
         ;
