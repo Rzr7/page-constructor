@@ -43,6 +43,7 @@ class Builder {
     }
 
     initLayout() {
+        
         this.container.html(this.layout);
     }
 

@@ -7,3 +7,20 @@
     background-color: rgb(51,51,51);
     border: 1px solid black;
 }
+
+.canvas {
+    margin: auto;
+    max-width: 600px;
+    height: 400px;
+    background-color: white;
+}
+
+.toolbar {
+    display: flexbox;
+    color: white;
+}
+
+.tool {
+    width: 70%;
+    height: 50px;
+}
