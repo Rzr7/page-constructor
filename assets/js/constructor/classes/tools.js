@@ -15,7 +15,8 @@
         this.toolsHtml = "";
         this.toolArray = ['rect', 'select', 'circle']; // TODO: Change this to array of existing classes inside /tools
         this.makeTools();
-    
+
+        
      }
 
      readFile(fileName) {
@@ -36,8 +37,10 @@
          * Maps all of the tools into their own buttons
          * 
          */
-        import  {Rectangle}  from './tools/rectangle.js'
-        console.log(new Rectangle("smt", 0, "", "boom"));
+
+         
+        // import {Rectangle} from './tools/rectangle.js'
+        // new Rectangle("smt", 0, "", "boom");
 
         this.toolArray.map(tool => {
             this.toolsHtml = this.toolsHtml + 
