@@ -1,26 +1,102 @@
-.main-container {
-    background-color: rgb(200,200,200);
+body {
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
 }
 
-.tools {
-    height: 100vh;
+.main-container {
+    background-color: rgb(200,200,200);
+    width: 100%;
+    display: flex;
+}
+
+.menu {
+    width: 100%;
+    /* position: absolute; */
+    height: 50px;
+    background-color: rgb(51, 51, 51);
+    font-variant: small-caps;
+    font-size: 1rem;
+    color: rgb(139, 49, 49)
+}
+
+.menu h1 {
+    /* margin-left: 80px; */
+    /* margin-bottom: 25px; */
+    text-align: center;
+    width: auto;
+    border-bottom: 3px solid rgb(139, 49, 49);
+
+}
+
+.menu h1:hover {
+    color: white;
+    transition: color 0.2s ease-out 0s;
+}
+
+
+.options {
+    background-color: rgb(51, 51, 51);
+    color: white;
+    width: 100%;
+    max-width: 20vw;
+    height: calc(100vh - 50px);
+}
+
+.canvas-background {
+    display: block;
+    width: 100%;
+    min-width: 70vw;
+}
+
+.canvas {
+    margin: 5% auto;
+    max-width: 80%;
+    height: 80%;
+    background-color: white;
+}
+
+
+.toolbar {
+    height: calc(100vh - 50px);
+    min-width: 63px;
+    max-width: 63px; 
     background-color: rgb(51,51,51);
     border: 1px solid black;
 }
 
-.canvas {
-    margin: auto;
-    max-width: 600px;
-    height: 400px;
-    background-color: white;
-}
 
-.toolbar {
-    display: flexbox;
+.tools {
+    display: flex;
+    flex-direction: column;
+    /* flex: 1; */
     color: white;
 }
 
 .tool {
-    width: 70%;
-    height: 50px;
+    color: white;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(51, 51, 51);
+    border: 1px solid rgb(200,200,200);
+    border-radius: 15px;
+    text-decoration:none !important;
+    font-variant: small-caps;
+    font-size: 1.1rem;
+    
+}
+
+.tool:hover {
+    background-color: rgb(200,200,200) ;
+    color: rgb(51, 51, 51);
+    border-color: rgb(51, 51, 51) ;
+    transition: background-color, color, border-color ease-in-out 0.2s;
+}
+.tool:focus {
+    outline: none;
+}
+
+.tool:active {
+    border-color: rgb(51, 51, 51) ;
+    text-decoration:none !important;
 }

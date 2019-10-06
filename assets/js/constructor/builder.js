@@ -3,12 +3,15 @@
  * @constructor
  * @param {jQuery} container - Container element for builder.
  */
+
+
+
 class Builder {
     constructor(container) {
         this.container = container;
         this.layout = '';
         this.menu = '';
-        this.tools = '';
+        this.toolbar = '';
         this.options = '';
         this.canvas = '';
         this.loadAssets();
@@ -34,12 +37,12 @@ class Builder {
         this.canvas = this.readFile('assets/js/constructor/layout/canvas.html');
         this.menu = this.readFile('assets/js/constructor/layout/menu.html');
         this.options = this.readFile('assets/js/constructor/layout/options.html');
-        this.tools = this.readFile('assets/js/constructor/layout/tools.html');
+        this.toolbar = this.readFile('assets/js/constructor/layout/toolbar.html');
 
         this.layout = this.layout.replace('[[ BLOCK:CANVAS ]]', this.canvas)
           .replace('[[ BLOCK:MENU ]]', this.menu)
           .replace('[[ BLOCK:OPTIONS ]]', this.options)
-          .replace('[[ BLOCK:TOOLS ]]', this.tools);
+          .replace('[[ BLOCK:TOOLBAR ]]', this.toolbar);
     }
 
     initLayout() {

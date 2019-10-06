@@ -6,16 +6,16 @@
  * 
  */
 
+'use strict'
+        
 
-
- class Tools {
+ class Toolbar {
     
      constructor(toolbar) {
         this.toolbar = toolbar
         this.toolsHtml = "";
         this.toolArray = ['rect', 'select', 'circle']; // TODO: Change this to array of existing classes inside /tools
         this.makeTools();
-
         
      }
 
@@ -31,16 +31,18 @@
         return fileData;
     }
 
+ 
+
     makeTools() {
         
         /**
          * Maps all of the tools into their own buttons
          * 
          */
-
          
-        // import {Rectangle} from './tools/rectangle.js'
-        // new Rectangle("smt", 0, "", "boom");
+        // import { Rectangle } from './tools/rectangle.js'
+        // const toolbar = require("./tools/rectangle.js");
+   
 
         this.toolArray.map(tool => {
             this.toolsHtml = this.toolsHtml + 
@@ -59,7 +61,7 @@
          * 
          */
         this.toolbar[0].outerHTML=`
-        <div class="toolbar" id="toolbar">
+        <div >
             <!-- Tools are in HTML form here -->
             ` + this.toolsHtml + `</div>`
         ;
