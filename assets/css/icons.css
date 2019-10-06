@@ -1,0 +1,11 @@
+#rect-tool {
+    background-image: url("./../src/images/rect.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#text-tool {
+    background-image: url("./../src/images/text.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}

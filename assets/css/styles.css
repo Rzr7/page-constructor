@@ -17,7 +17,7 @@ body {
     background-color: rgb(51, 51, 51);
     font-variant: small-caps;
     font-size: 1rem;
-    color: rgb(139, 49, 49)
+    
 }
 
 .menu h1 {
@@ -26,12 +26,14 @@ body {
     text-align: center;
     width: auto;
     border-bottom: 3px solid rgb(139, 49, 49);
+    color: rgb(139, 49, 49);
+    transition: color 0.1s ease-in-out 0s;
 
 }
 
 .menu h1:hover {
     color: white;
-    transition: color 0.2s ease-out 0s;
+    transition: color 0.1   s ease-in-out 0s;
 }
 
 

@@ -6,7 +6,6 @@
  * 
  */
 
-'use strict'
         
 
  class Toolbar {
@@ -45,16 +44,14 @@
          * Maps all of the tools into their own buttons
          * 
          */
+        this.toolsHtml="";
 
         this.toolArray.map(tool => {
-            console.log("DEBUG", tool);
             this.toolsHtml+=
             `
-            <button class="tool" id="`+tool.toolTip+`">`+tool.toolName+`</button>
+            <button class="tool" id="`+tool.toolId+`"></button>
             ` // Later we use images to identify tools instead of names
         })
-        this.initLayout();
-
 
     }
 
@@ -63,7 +60,10 @@
          * Replaces tools.html body with a list of "tool" buttons
          * 
          */
-        this.toolbar[0].outerHTML=`
+        console.log(this.toolbar[0])
+        console.log(this.toolsHtml)
+        console.log($("#toolbar"))
+        $("#toolbar")[0].outerHTML=`
         <div>
             <!-- Tools are in HTML form here -->
             ` + this.toolsHtml + `</div>`
