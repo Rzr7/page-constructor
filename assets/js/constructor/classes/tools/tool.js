@@ -1,20 +1,18 @@
 /**
- * 
- * 
+ *
+ *
  */
 
- class Tool {
-     constructor() {
+class Tool {
+  constructor() {
 
-     }
+  }
 
-     click() {
+  click() {
 
-     }
+  }
 
-     hover() {
+  hover() {
 
-     }
-
-    
- }
+  }
+}
