@@ -19,7 +19,7 @@ body {
     font-size: 1rem;
     display: flex;
     overflow: hidden;
-    position: relative;
+    
     
 }
 
@@ -37,6 +37,12 @@ body {
 .menu h1:hover {
     color: white;
     transition: color 0.1   s ease-in-out 0s;
+}
+
+.menu-buttons {
+    position: absolute;
+    right: 0;
+    left: auto;
 }
 
 .menu-button {
