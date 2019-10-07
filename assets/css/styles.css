@@ -17,13 +17,16 @@ body {
     background-color: rgb(51, 51, 51);
     font-variant: small-caps;
     font-size: 1rem;
+    display: flex;
+    overflow: hidden;
+    position: relative;
     
 }
 
 .menu h1 {
     /* margin-left: 80px; */
     /* margin-bottom: 25px; */
-    text-align: center;
+    text-align: left;
     width: auto;
     border-bottom: 3px solid rgb(139, 49, 49);
     color: rgb(139, 49, 49);
@@ -34,6 +37,16 @@ body {
 .menu h1:hover {
     color: white;
     transition: color 0.1   s ease-in-out 0s;
+}
+
+.menu-button {
+    font-variant: small-caps;
+
+    display: flex;
+    justify-content: right;
+    float: right;
+    position: relative;
+    /* justify-content: flex-end; */
 }
 
 
@@ -89,7 +102,7 @@ body {
 }
 
 .tool:hover {
-    background-color: rgb(200,200,200) ;
+    background-color: rgb(27, 27, 27) ;
     color: rgb(51, 51, 51);
     border-color: rgb(51, 51, 51) ;
     transition: background-color, color, border-color ease-in-out 0.2s;
@@ -101,4 +114,20 @@ body {
 .tool:active {
     border-color: rgb(51, 51, 51) ;
     text-decoration:none !important;
+}
+
+
+.props-menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.explorer {
+    height: 50%;
+}
+
+.properties {
+    height: 50%;
 }

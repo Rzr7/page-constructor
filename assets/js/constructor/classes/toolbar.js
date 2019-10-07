@@ -2,7 +2,7 @@
  * @constructor
  * @param {element} toolbar - Toolbar DOM element.
  * @param {string} toolsHtml - raw HTML that is dynamically replaced with buttons
- * @param {array} toolArray - array of tools (todo) from /tools folder
+ * @param {array} toolArray - array of tools from /tools folder
  * 
  */
 
