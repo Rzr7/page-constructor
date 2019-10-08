@@ -3,14 +3,12 @@
  * 
  */
 
- class Tool {
-     constructor() {
+class Tool {
+  constructor() {
 
-     }
+  }
 
      hover() {
 
-     }
-
-    
- }
+  }
+}

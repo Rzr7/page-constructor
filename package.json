@@ -1,0 +1,45 @@
+{
+  "name": "page-constructor",
+  "version": "1.0.0",
+  "description": "Page costructor",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "debug": "latest",
+    "dotenv": "^8.1.0",
+    "popper.js": "^1.15.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-external-helpers": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "eslint": "^6.5.1",
+    "eslint-config-google": "^0.14.0",
+    "jquery": "^3.4.1",
+    "rollup": "^1.23.1",
+    "rollup-plugin-babel": "^5.0.0-alpha.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-inject": "^3.0.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-uglify": "^6.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rzr7/page-constructor.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rzr7/page-constructor/issues"
+  },
+  "homepage": "https://github.com/Rzr7/page-constructor#readme"
+}

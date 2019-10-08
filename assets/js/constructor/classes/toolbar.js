@@ -19,30 +19,29 @@
         
      }
 
-     readFile(fileName) {
-        var fileData = '';
-        jQuery.ajax({
-            url: fileName,
-            success: function (data) {
-                fileData = data;
-            },
-            async: false
-        });
-        return fileData;
-    }
-
     add(tool) {
         this.toolArray.push(tool);
         this.makeTools();
     }
 
  
+  readFile(fileName) {
+    let fileData = '';
+    jQuery.ajax({
+      url: fileName,
+      success: function(data) {
+        fileData = data;
+      },
+      async: false,
+    });
+    return fileData;
+  }
 
-    makeTools() {
-        
-        /**
+
+  makeTools() {
+    /**
          * Maps all of the tools into their own buttons
-         * 
+         *
          */
         this.toolsHtml="";
 
@@ -53,12 +52,23 @@
             ` // Later we use images to identify tools instead of names
         })
 
-    }
+    // import { Rectangle } from './tools/rectangle.js'
+    // const toolbar = require("./tools/rectangle.js");
 
-     initLayout() {
-        /**
+
+    this.toolArray.map((tool) => {
+      this.toolsHtml = this.toolsHtml +
+            `
+            <button class="tool">`+tool+`</button>
+            `;
+    });
+    this.initLayout();
+  }
+
+  initLayout() {
+    /**
          * Replaces tools.html body with a list of "tool" buttons
-         * 
+         *
          */
         console.log(this.toolbar[0])
         console.log(this.toolsHtml)
@@ -66,13 +76,8 @@
         $("#toolbar")[0].outerHTML=`
         <div>
             <!-- Tools are in HTML form here -->
-            ` + this.toolsHtml + `</div>`
-        ;
-        
+            ` + this.toolsHtml + '</div>'
+    ;
+  }
+}
 
-     }
-     
-     
- }
-
- 

@@ -1,6 +1,6 @@
-/** 
+/**
 * @constructor
-* @param toolName - tool name 
+* @param toolName - tool name
 * @param index - tool's position in toolbar
 */
 
