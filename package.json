@@ -10,7 +10,6 @@
     "popper.js": "^1.15.0"
   },
   "devDependencies": {
-    "jquery": "^3.4.1",
     "@babel/core": "^7.6.2",
     "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.6.2",
@@ -19,6 +18,8 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "eslint": "^6.5.1",
     "eslint-config-google": "^0.14.0",
+    "jquery": "^3.4.1",
+    "less": "^3.10.3",
     "rollup": "^1.23.1",
     "rollup-plugin-babel": "^5.0.0-alpha.0",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -30,7 +31,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "build": "rollup -c && lessc ./assets/css/styles.less ./dist/styles.css"
   },
   "repository": {
     "type": "git",

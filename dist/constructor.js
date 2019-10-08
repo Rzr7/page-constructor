@@ -11325,6 +11325,12 @@ var PageEditor = (function (jQuery) {
 	} );
 	});
 
+	/**
+	 * Represents a toolbar.
+	 * @constructor
+	 * @param {jQuery} toolbar - toolbar.
+	 */
+
 	class Toolbar {
 	  constructor(toolbar) {
 	    this.toolbar = toolbar;
@@ -11351,9 +11357,9 @@ var PageEditor = (function (jQuery) {
 
 	  makeTools() {
 	    /**
-	         * Maps all of the tools into their own buttons
-	         *
-	         */
+	     * Maps all of the tools into their own buttons
+	     *
+	     */
 	    this.toolsHtml = '';
 	    this.toolArray.map(tool => {
 	      this.toolsHtml += "\n            <button class=\"tool\" id=\"" + tool.toolId + "\"></button>\n            ";
@@ -11362,9 +11368,9 @@ var PageEditor = (function (jQuery) {
 
 	  initLayout() {
 	    /**
-	         * Replaces tools.html body with a list of "tool" buttons
-	         *
-	         */
+	     * Replaces tools.html body with a list of "tool" buttons
+	     *
+	     */
 	    $('#toolbar')[0].outerHTML = "\n        <div>\n            <!-- Tools are in HTML form here -->\n            " + this.toolsHtml + '</div>';
 	  }
 
@@ -11388,17 +11394,17 @@ var PageEditor = (function (jQuery) {
 	    this.initLayout();
 	    this.initToolbar();
 	  }
+	  /**
+	   * Tools are added by calling in a new class on toolbar.add(*)
+	   * @params : Tool name | Index | Image | Tool ID
+	   * Index is used to change order in which tools are displayed (WIP)
+	   * Image is stored in assets/src/images and are all 64x64 (mby change later?)
+	   * Tool ID is a unique ID for the tool
+	   */
+
 
 	  initToolbar() {
 	    var toolbar = new Toolbar(jquery('#toolbar'));
-	    /**
-	    * Tools are added by calling in a new class on toolbar.add(*)
-	    * @params : Tool name | Index | Image | Tool ID
-	    * Index is used to change order in which tools are displayed (WIP)
-	    * Image is stored in assets/src/images and are all 64x64 (mby change later?)
-	    * Tool ID is a unique ID for the tool
-	    */
-
 	    toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
 	    toolbar.add(new Text('Text', 1, '', 'text-tool'));
 	    toolbar.initLayout();

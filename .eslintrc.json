@@ -17,10 +17,8 @@
     },
     "rules": {
         "require-jsdoc": "off",
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
+        "object-curly-spacing": "off",
+        "linebreak-style": "off",
         "quotes": [
             "error",
             "single"
