@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import Toolbar from './classes/toolbar.js';
 
 /**

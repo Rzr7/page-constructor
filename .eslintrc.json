@@ -9,13 +9,18 @@
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
-        "ENV": true
+        "ENV": true,
+        "$":false
     },
     "parserOptions": {
         "ecmaVersion": 2018,
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "impliedStrict": true
+        }
     },
     "rules": {
+        "no-constant-condition": "off",
         "require-jsdoc": "off",
         "object-curly-spacing": "off",
         "linebreak-style": "off",

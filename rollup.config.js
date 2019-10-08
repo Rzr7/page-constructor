@@ -6,6 +6,8 @@ import replace from 'rollup-plugin-replace';
 import uglify from 'rollup-plugin-uglify';
 import inject from 'rollup-plugin-inject';
 
+const env = process.env.NODE_ENV
+
 export default {
   input: 'assets/js/constructor/entry.js',
   treeshake: false,
@@ -21,13 +23,12 @@ export default {
     }),
     inject({
       include: '**/*.js',
-      exclude: 'node_modules/**',
-      jQuery: '$',
+      exclude: 'node_modules/**'
     }),
     commonjs(),
     eslint({
       exclude: [
-        'src/styles/**',
+        'js/libraries/**',
       ],
     }),
     babel({
@@ -38,6 +39,13 @@ export default {
       exclude: 'node_modules/**',
       ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
-    (process.env.NODE_ENV === 'production' && uglify()),
+    (process.env.NODE_ENV === 'production' && uglify({
+      compress: {
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        warnings: false,
+      },
+    })),
   ],
 };
