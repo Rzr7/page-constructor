@@ -13,11 +13,11 @@ import toolbar from './layout/toolbar.html';
 export default class Builder {
   constructor(container) {
     this.container = container;
-    this.layout = '';
-    this.menu = '';
-    this.toolbar = '';
-    this.options = '';
-    this.canvas = '';
+    this.layout = layout;
+    this.menu = menu;
+    this.toolbar = toolbar;
+    this.options = options;
+    this.canvas = canvas;
     this.loadAssets();
     this.initLayout();
     this.initToolbar();
@@ -38,12 +38,6 @@ export default class Builder {
   }
 
   loadAssets() {
-    this.layout = layout;
-    this.canvas = canvas;
-    this.menu = menu;
-    this.options = options;
-    this.toolbar = toolbar;
-
     this.layout = this.layout.replace('[[ BLOCK:CANVAS ]]', this.canvas)
         .replace('[[ BLOCK:MENU ]]', this.menu)
         .replace('[[ BLOCK:OPTIONS ]]', this.options)
