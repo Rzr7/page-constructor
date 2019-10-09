@@ -1,4 +1,9 @@
 import Toolbar from './classes/toolbar.js';
+import layout from './layout/layout.html';
+import canvas from './layout/canvas.html';
+import menu from './layout/menu.html';
+import options from './layout/options.html';
+import toolbar from './layout/toolbar.html';
 
 /**
  * Represents a builder.
@@ -32,26 +37,12 @@ export default class Builder {
     toolbar.initLayout();
   }
 
-  // TODO: Solution to allow loading assets asynchronously
-  readFile(fileName) {
-    let fileData = '';
-    $.ajax({
-      url: fileName,
-      success: function(data) {
-        fileData = data;
-      },
-      async: false,
-    });
-    return fileData;
-  }
-
-  // TODO: Solution to allow loading assets asynchronously
   loadAssets() {
-    this.layout = this.readFile('assets/js/constructor/layout/layout.html');
-    this.canvas = this.readFile('assets/js/constructor/layout/canvas.html');
-    this.menu = this.readFile('assets/js/constructor/layout/menu.html');
-    this.options = this.readFile('assets/js/constructor/layout/options.html');
-    this.toolbar = this.readFile('assets/js/constructor/layout/toolbar.html');
+    this.layout = layout;
+    this.canvas = canvas;
+    this.menu = menu;
+    this.options = options;
+    this.toolbar = toolbar;
 
     this.layout = this.layout.replace('[[ BLOCK:CANVAS ]]', this.canvas)
         .replace('[[ BLOCK:MENU ]]', this.menu)
