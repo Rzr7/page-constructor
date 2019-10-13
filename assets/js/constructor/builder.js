@@ -1,5 +1,4 @@
 import Toolbar from './classes/toolbar.js';
-
 /**
  * Represents a builder.
  * @constructor
