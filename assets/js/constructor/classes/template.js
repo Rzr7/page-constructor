@@ -1,10 +1,14 @@
 /**
  * Represents a template.
  * @constructor
- * @param {Array} block - Array of blocks for template.
+ * @param {String} id - Template id (folder name).
  */
 class Template {
-  constructor(blocks) {
-    this.blocks = blocks;
+  constructor(id) {
+    this.templateId = id;
+    this.blocks = [];
+    this.templateInfo = {};
   }
+
+
 }

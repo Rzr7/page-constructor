@@ -1,0 +1,8 @@
+{
+  "name": "My first Template",
+  "description": "First template",
+  "author": "HyperWare team",
+  "blocks": [
+    "title"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Title",
+  "alt": "Title block",
+  "category": "typography",
+  "thumb": "thumbnail.jpg",
+  "variables": {
+    "title": {
+      "type": "text",
+      "value": "Title",
+      "defaults": {
+        "color": "#000000"
+      }
+    }
+  }
+}
