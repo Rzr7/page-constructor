@@ -80,12 +80,40 @@ body {
 
 .toolbar {
     height: calc(100vh - 50px);
-    min-width: 63px;
-    max-width: 63px; 
+    min-width: 250px;
+    max-width: 250px; 
     background-color: rgb(51,51,51);
     border: 1px solid black;
 }
 
+.toolbar-buttons {
+    display: flex;
+}
+
+.toolbar-button {
+    background-color: rgb(51,51,51);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    color: white;
+    border: 1px solid white;
+    width: 50%;
+    text-align: center;
+    height: 30px;
+    font-variant: small-caps;
+}
+
+.toolbar-button:focus {
+    background-color: rgb(51,51,51);
+    outline: none;
+}
+
+.toolbar-button.active {
+    background-color: rgb(65, 65, 65);
+    border-bottom: 3px solid rgb(30, 150, 200);
+}
 
 .tools {
     display: flex;

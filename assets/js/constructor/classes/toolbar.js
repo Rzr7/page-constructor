@@ -8,11 +8,39 @@ export default class Toolbar {
     this.toolbar = toolbar;
     this.toolsHtml = '';
     this.toolArray = [];
+    this.activeToolbarPanel;
+    $('#toolbar-options-content').hide();
+
+    this.actions();
   }
 
   add(tool) {
     this.toolArray.push(tool);
     this.makeTools();
+  }
+
+  actions() {
+    $('#tools-button').click( () => {
+      if ($('#options-button').hasClass('active')) {
+        $('#tools-button').addClass('active');
+        $('#toolbar-tools-content').show();
+        $('#toolbar-options-content').hide();
+
+        $('#options-button').removeClass('active');
+        this.activeToolbarPanel = 'tools';
+      }
+      console.log(this.activeToolbarPanel);
+    });
+    $('#options-button').click( () => {
+      if ($('#tools-button').hasClass('active')) {
+        $('#options-button').addClass('active');
+        $('#toolbar-tools-content').hide();
+        $('#toolbar-options-content').show();
+        $('#tools-button').removeClass('active');
+        this.activeToolbarPanel = 'options';
+      }
+      console.log(this.activeToolbarPanel);
+    });
   }
 
   readFile(fileName) {
@@ -49,11 +77,11 @@ export default class Toolbar {
      *
      */
 
-    $('#toolbar')[0].outerHTML = `
+    $('#toolbar-tools-content').html(`
         <div>
             <!-- Tools are in HTML form here -->
             ` + this.toolsHtml + '</div>'
-    ;
+    );
   }
 }
 
