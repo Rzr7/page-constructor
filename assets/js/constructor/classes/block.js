@@ -9,13 +9,35 @@ export default class Block {
     this.name = name;
     this.data = data;
     this.path = path;
+    this.defaults = {};
     this.html = '';
+    this.initDefaults();
     this.initHtml();
+    this.parseVariables();
   }
 
   initHtml() {
     const url = this.path + '/block.html';
     this.html = this.getRequest(url);
+  }
+
+  initDefaults() {
+    this.defaults = this.getOption('variables');
+  }
+
+  parseVariables() {
+    const that = this;
+    $.each(this.defaults, function(k, v) {
+      if (v.type === 'text') {
+        const variable = '\\[\\[ ' + k.toUpperCase() + ' \\]\\]';
+        const regex = new RegExp(variable, 'g');
+        that.html = that.html.replace(regex, v.value);
+      }
+    });
+  }
+
+  getOption(optionName) {
+    return this.data[optionName];
   }
 
   getHtml() {

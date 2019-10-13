@@ -37,7 +37,11 @@ export default class Template {
   }
 
   getBlockHtml(blockId) {
-    return this.blocks[blockId].getHtml();
+    return this.getBlock(blockId).getHtml();
+  }
+
+  getBlock(blockId) {
+    return this.blocks[blockId];
   }
 
   getRequest(url) {
