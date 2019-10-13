@@ -54,6 +54,5 @@ export default class Builder {
 
   initTemplate() {
     this.template = new Template('initial_template');
-    console.log(this.template.getBlockHtml('title') );
   }
 }

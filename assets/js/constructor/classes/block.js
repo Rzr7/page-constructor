@@ -40,6 +40,14 @@ export default class Block {
     return this.data[optionName];
   }
 
+  getThumbnail(getUrl = false) {
+    const url = this.path + '/' + this.getOption('thumbnail');
+    if (getUrl) {
+      return url;
+    }
+    return this.getRequest(url);
+  }
+
   getHtml() {
     return this.html;
   }

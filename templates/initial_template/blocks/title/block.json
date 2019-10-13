@@ -2,7 +2,7 @@
   "name": "Title",
   "alt": "Title block",
   "category": "typography",
-  "thumb": "thumbnail.jpg",
+  "thumbnail": "thumbnail.jpg",
   "variables": {
     "title": {
       "type": "text",

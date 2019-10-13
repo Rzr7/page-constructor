@@ -44,6 +44,10 @@ export default class Template {
     return this.blocks[blockId];
   }
 
+  getBlockThumbnail(blockId, getUrl = false) {
+    return this.getBlock(blockId).getThumbnail(getUrl);
+  }
+
   getRequest(url) {
     let result = false;
     $.ajax({
