@@ -1,4 +1,4 @@
-import Toolbar from './classes/toolbar.js';
+import Template from './classes/template.js';
 import layout from './layout/layout.html';
 import canvas from './layout/canvas.html';
 import menu from './layout/menu.html';
@@ -18,9 +18,11 @@ export default class Builder {
     this.toolbar = toolbar;
     this.options = options;
     this.canvas = canvas;
+    this.template = {};
     this.loadAssets();
     this.initLayout();
     this.initToolbar();
+    this.initTemplate();
   }
 
   /**
@@ -31,10 +33,12 @@ export default class Builder {
    * Tool ID is a unique ID for the tool
    */
   initToolbar() {
+    /*
     const toolbar = new Toolbar($('#toolbar'));
     toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
     toolbar.add(new Text('Text', 1, '', 'text-tool'));
     toolbar.initLayout();
+    */
   }
 
   loadAssets() {
@@ -46,5 +50,10 @@ export default class Builder {
 
   initLayout() {
     this.container.html(this.layout);
+  }
+
+  initTemplate() {
+    this.template = new Template('initial_template');
+    console.log(this.template.getBlockHtml('title') );
   }
 }
