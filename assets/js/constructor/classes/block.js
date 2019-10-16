@@ -5,6 +5,7 @@ import Utils from './utils.js';
  * @constructor
  * @param {String} name - Block name.
  * @param {Array} data - Block data (html, options, etc.).
+ * @param {String} path - Path to block folder.
  */
 export default class Block {
   constructor(name, data, path) {
@@ -19,7 +20,8 @@ export default class Block {
   }
 
   initHtml() {
-    const url = this.path + '/block.html';
+    const url = this.path + '/block.html?' +
+      new Date().getMilliseconds();
     this.html = Utils.get(url);
   }
 
