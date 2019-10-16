@@ -54,7 +54,7 @@ export default {
         collapseWhitespace: true,
         collapseBooleanAttributes: true,
         conservativeCollapse: true,
-        minifyJS: true
+        minifyJS: true,
       }
     })
   ],

@@ -4,9 +4,8 @@ import layout from './layout/layout.html';
 import canvas from './layout/canvas.html';
 import menu from './layout/menu.html';
 import options from './layout/options.html';
-import toolbar from './layout/toolbar.html';
-
-
+import toolbarHtml from './layout/toolbar.html';
+import Toolbar from './classes/toolbar';
 /**
  * Represents a builder.
  * @constructor
@@ -29,7 +28,7 @@ export default class Builder {
     this.container = container;
     this.layout = layout;
     this.menu = menu;
-    this.toolbar = toolbar;
+    this.toolbarHtml = toolbarHtml;
     this.options = options;
     this.canvas = canvas;
     this.template = {};
@@ -51,12 +50,10 @@ export default class Builder {
    * Tool ID is a unique ID for the tool
    */
   initToolbar() {
-    /*
     const toolbar = new Toolbar($('#toolbar'));
     toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
     toolbar.add(new Text('Text', 1, '', 'text-tool'));
     toolbar.initLayout();
-    */
   }
 
   /**
@@ -66,7 +63,7 @@ export default class Builder {
     this.layout = this.layout.replace('[[ BLOCK:CANVAS ]]', this.canvas)
         .replace('[[ BLOCK:MENU ]]', this.menu)
         .replace('[[ BLOCK:OPTIONS ]]', this.options)
-        .replace('[[ BLOCK:TOOLBAR ]]', this.toolbar);
+        .replace('[[ BLOCK:TOOLBAR ]]', this.toolbarHtml);
   }
 
   /**
