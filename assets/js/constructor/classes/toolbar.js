@@ -10,8 +10,8 @@ export default class Toolbar {
     this.toolArray = [];
     this.activeToolbarPanel;
     $('#toolbar-options-content').hide();
-
     this.actions();
+    console.log('Toolbar INIT');
   }
 
   add(tool) {
