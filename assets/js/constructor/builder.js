@@ -21,8 +21,9 @@ export default class Builder {
     this.template = {};
     this.loadAssets();
     this.initLayout();
-    this.initToolbar();
     this.initTemplate();
+
+    this.initToolbar();
   }
 
   /**

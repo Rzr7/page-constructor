@@ -1,8 +1,9 @@
 {
   "name": "Title",
+  "id": "initial_template_title_1",
   "alt": "Title block",
   "category": "typography",
-  "thumbnail": "thumbnail.jpg",
+  "thumbnail": "thumbnail.png",
   "variables": {
     "title": {
       "type": "text",

@@ -1,5 +1,5 @@
 import Template from './template.js';
-
+import Block from './block.js';
 
 /**
  * Represents a toolbar.
@@ -11,11 +11,13 @@ export default class Toolbar {
     this.toolbar = toolbar;
     this.toolsHtml = '';
     this.toolArray = [];
+    this.blocksHtml = '';
+    this.blocksArray = [];
     this.activeToolbarPanel;
-    const newTemplate = new Template();
-    $('#toolbar-options-content').hide();
+    this.newTemplate = new Template('initial_template');
+    $('#toolbar-blocks-content').hide();
     this.actions();
-    console.log('Toolbar INIT');
+    this.makeArrayOfObjects();
   }
 
   add(tool) {
@@ -25,25 +27,24 @@ export default class Toolbar {
 
   actions() {
     $('#tools-button').click( () => {
-      if ($('#options-button').hasClass('active')) {
+      if ($('#blocks-button').hasClass('active')) {
         $('#tools-button').addClass('active');
         $('#toolbar-tools-content').show();
-        $('#toolbar-options-content').hide();
+        $('#toolbar-blocks-content').hide();
 
-        $('#options-button').removeClass('active');
+        $('#blocks-button').removeClass('active');
         this.activeToolbarPanel = 'tools';
       }
       console.log(this.activeToolbarPanel);
     });
-    $('#options-button').click( () => {
+    $('#blocks-button').click( () => {
       if ($('#tools-button').hasClass('active')) {
-        $('#options-button').addClass('active');
+        $('#blocks-button').addClass('active');
         $('#toolbar-tools-content').hide();
-        $('#toolbar-options-content').show();
+        $('#toolbar-blocks-content').show();
         $('#tools-button').removeClass('active');
-        this.activeToolbarPanel = 'options';
+        this.activeToolbarPanel = 'blocks';
       }
-      console.log(this.activeToolbarPanel);
     });
   }
 
@@ -57,6 +58,17 @@ export default class Toolbar {
       async: false,
     });
     return fileData;
+  }
+
+  makeArrayOfObjects() {
+    console.log('test', this.newTemplate.blocks);
+    this.blocksArray = [];
+    const keys = Object.keys(this.newTemplate.blocks);
+    keys.map((key) => {
+      this.blocksArray.push(this.newTemplate.blocks[key]);
+    });
+    console.log(this.blocksArray);
+    this.makeBlocksHtml();
   }
 
   makeTools() {
@@ -75,6 +87,26 @@ export default class Toolbar {
     // this.initLayout();
   }
 
+  makeBlocksHtml() {
+    /**
+     * Maps all of the blocks into their own buttons
+     *
+     */
+    // this.blocksHtml = '';
+
+    this.blocksArray.map((block) => {
+      this.blocksHtml +=
+          `
+        <div class="pcons-block-preview" id="` +
+         block.data.id +
+         '"><img class="pcons-block-preview-image" src="'+block.path +
+         '/' + block.data.thumbnail+`" />
+         <p class="pcons-block-preview-name">` + block.data.name + `</p>
+         </div>`;
+    });
+    console.log(this.blocksHtml);
+  }
+
   initLayout() {
     /**
      * Replaces tools.html body with a list of "tool" buttons
@@ -85,6 +117,11 @@ export default class Toolbar {
         <div>
             <!-- Tools are in HTML form here -->
             ` + this.toolsHtml + '</div>'
+    );
+    $('#toolbar-blocks-content').html(`
+        <div>
+            <!-- Blocks are in HTML form here -->
+            ` + this.blocksHtml + '</div>'
     );
   }
 }

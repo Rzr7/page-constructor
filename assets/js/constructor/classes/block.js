@@ -6,8 +6,9 @@ import Utils from './utils.js';
  * @param {Array} data - Block data (html, options, etc.).
  */
 export default class Block {
-  constructor(name, data, path) {
+  constructor(name, data, path, id) {
     this.name = name;
+    this.id = id;
     this.data = data;
     this.path = path;
     this.blocksPath = '../blocks/';

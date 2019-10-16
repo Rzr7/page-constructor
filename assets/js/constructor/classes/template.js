@@ -14,8 +14,6 @@ export default class Template {
     this.path = '/templates/' + this.templateId;
     this.parseTemplate();
     this.parseBlocks();
-    console.log('INIT TEMPLATE');
-    console.log(this.blocks);
   }
 
   parseTemplate() {
@@ -30,13 +28,13 @@ export default class Template {
       that.createBlock(
           block,
           Utils.get(blocksPath + block + '/block.json'),
-          blocksPath + block
+          blocksPath + block,
       );
     });
   }
 
-  createBlock(blockId, blockData, url) {
-    this.blocks[blockId] = new Block(blockId, blockData, url);
+  createBlock(blockId, blockData, url, id) {
+    this.blocks[blockId] = new Block(blockId, blockData, url, id);
   }
 
   getBlockHtml(blockId) {
