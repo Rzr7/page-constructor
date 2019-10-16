@@ -19,7 +19,6 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "eslint": "^6.5.1",
     "eslint-config-google": "^0.14.0",
-    "jquery": "^3.4.1",
     "less": "^3.10.3",
     "rollup": "^1.23.1",
     "rollup-plugin-babel": "^5.0.0-alpha.0",

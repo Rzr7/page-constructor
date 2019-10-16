@@ -7,7 +7,7 @@ import uglify from 'rollup-plugin-uglify';
 import inject from 'rollup-plugin-inject';
 import html from 'rollup-plugin-html';
 
-const env = process.env.NODE_ENV
+const env = process.env.NODE_ENV;
 
 export default {
   input: 'assets/js/constructor/entry.js',
