@@ -1,5 +1,7 @@
 {
   "name": "Title",
+  "id": "title_1",
+  "version": "0.1",
   "alt": "Title block",
   "category": "typography",
   "thumbnail": "thumbnail.jpg",

@@ -5,6 +5,7 @@ import Utils from './utils.js';
  * Represents a template.
  * @constructor
  * @param {String} id - Template id (folder name).
+ * @param {String} path - Template path to folder.
  */
 export default class Template {
   constructor(id, path) {
@@ -16,6 +17,10 @@ export default class Template {
     this.parseBlocks();
   }
 
+  /**
+   * Parse template data from template.json file.
+   * @throws {Error} - Path to template is invalid/not reachable
+   */
   parseTemplate() {
     const templatePath = this.path + '/template.json?' +
       new Date().getMilliseconds();
@@ -26,6 +31,10 @@ export default class Template {
     this.templateInfo = templateInfo;
   }
 
+  /**
+   * Parse block data from block.json file and create block object.
+   * @throws {Error} - Block is not existing
+   */
   parseBlocks() {
     const blocksPath = this.path + '/blocks/';
     const that = this;
@@ -43,18 +52,40 @@ export default class Template {
     });
   }
 
+  /**
+   * Create block object and add it to template blocks array.
+   * @param {String} blockId - Block name.
+   * @param {String} blockData - Block json data.
+   * @param {String} url - Path to block folder.
+   */
   createBlock(blockId, blockData, url) {
     this.blocks[blockId] = new Block(blockId, blockData, url);
   }
 
+  /**
+   * Get block html string
+   * @param {String} blockId - Block name.
+   * @return {String} Block html
+   */
   getBlockHtml(blockId) {
     return this.getBlock(blockId).getHtml();
   }
 
+  /**
+   * Get block object
+   * @param {String} blockId - Block name.
+   * @return {Block} Block object
+   */
   getBlock(blockId) {
     return this.blocks[blockId];
   }
 
+  /**
+   * Get block thumbnail
+   * @param {String} blockId - Block name.
+   * @param {Boolean} getUrl - Do we need only url or image object?
+   * @return {(String|Image)} Thumbnail Url or Image object
+   */
   getBlockThumbnail(blockId, getUrl = false) {
     return this.getBlock(blockId).getThumbnail(getUrl);
   }

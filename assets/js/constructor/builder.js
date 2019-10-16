@@ -11,6 +11,7 @@ import toolbar from './layout/toolbar.html';
  * Represents a builder.
  * @constructor
  * @param {jQuery} container - Container element for builder.
+ * @param {Object} properties - Builder options comes from initializer.
  */
 export default class Builder {
   constructor(container, properties = {}) {
@@ -58,6 +59,9 @@ export default class Builder {
     */
   }
 
+  /**
+   * Loading html content to layout variables
+   */
   loadAssets() {
     this.layout = this.layout.replace('[[ BLOCK:CANVAS ]]', this.canvas)
         .replace('[[ BLOCK:MENU ]]', this.menu)
@@ -65,10 +69,16 @@ export default class Builder {
         .replace('[[ BLOCK:TOOLBAR ]]', this.toolbar);
   }
 
+  /**
+   * Set container html with layout
+   */
   initLayout() {
     this.container.html(this.layout);
   }
 
+  /**
+   * Load initial template using constructor properties
+   */
   initTemplate() {
     this.template = new Template(
         this.properties.template,
