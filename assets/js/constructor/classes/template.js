@@ -1,4 +1,5 @@
 import Block from './block.js';
+import Utils from './utils.js';
 
 /**
  * Represents a template.
@@ -17,7 +18,7 @@ export default class Template {
 
   parseTemplate() {
     const templatePath = this.path + '/template.json';
-    this.templateInfo = this.getRequest(templatePath);
+    this.templateInfo = Utils.get(templatePath);
   }
 
   parseBlocks() {
@@ -26,7 +27,7 @@ export default class Template {
     $.each(this.templateInfo.blocks, function(k, block) {
       that.createBlock(
           block,
-          that.getRequest(blocksPath + block + '/block.json'),
+          Utils.get(blocksPath + block + '/block.json'),
           blocksPath + block
       );
     });
@@ -46,21 +47,5 @@ export default class Template {
 
   getBlockThumbnail(blockId, getUrl = false) {
     return this.getBlock(blockId).getThumbnail(getUrl);
-  }
-
-  getRequest(url) {
-    let result = false;
-    $.ajax({
-      async: false,
-      url: url,
-      type: 'GET',
-      success: function(data) {
-        result = data;
-      },
-      error: function(e) {
-        console.dir(e);
-      },
-    });
-    return result;
   }
 }

@@ -1,3 +1,5 @@
+import Utils from './utils.js';
+
 /**
  * Represents a block.
  * @constructor
@@ -18,7 +20,7 @@ export default class Block {
 
   initHtml() {
     const url = this.path + '/block.html';
-    this.html = this.getRequest(url);
+    this.html = Utils.get(url);
   }
 
   initDefaults() {
@@ -45,26 +47,10 @@ export default class Block {
     if (getUrl) {
       return url;
     }
-    return this.getRequest(url);
+    return Utils.get(url);
   }
 
   getHtml() {
     return this.html;
-  }
-
-  getRequest(url) {
-    let result = false;
-    $.ajax({
-      async: false,
-      url: url,
-      type: 'GET',
-      success: function(data) {
-        result = data;
-      },
-      error: function(e) {
-        console.dir(e);
-      },
-    });
-    return result;
   }
 }
