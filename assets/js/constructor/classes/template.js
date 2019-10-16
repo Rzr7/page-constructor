@@ -14,6 +14,8 @@ export default class Template {
     this.path = '/templates/' + this.templateId;
     this.parseTemplate();
     this.parseBlocks();
+    console.log('INIT TEMPLATE');
+    console.log(this.blocks);
   }
 
   parseTemplate() {

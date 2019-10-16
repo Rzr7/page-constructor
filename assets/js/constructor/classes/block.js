@@ -1,5 +1,4 @@
 import Utils from './utils.js';
-
 /**
  * Represents a block.
  * @constructor
@@ -11,6 +10,7 @@ export default class Block {
     this.name = name;
     this.data = data;
     this.path = path;
+    this.blocksPath = '../blocks/';
     this.defaults = {};
     this.html = '';
     this.initDefaults();

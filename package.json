@@ -35,7 +35,7 @@
   "watch": {
       "auto": {
         "delay": 200,
-        "runOnChangeOnly": true,
+        "runOnChangeOnly": true
       }  
     },
   

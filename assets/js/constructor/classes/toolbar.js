@@ -1,3 +1,6 @@
+import Template from './template.js';
+
+
 /**
  * Represents a toolbar.
  * @constructor
@@ -9,6 +12,7 @@ export default class Toolbar {
     this.toolsHtml = '';
     this.toolArray = [];
     this.activeToolbarPanel;
+    const newTemplate = new Template();
     $('#toolbar-options-content').hide();
     this.actions();
     console.log('Toolbar INIT');
