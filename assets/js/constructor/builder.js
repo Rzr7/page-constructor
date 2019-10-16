@@ -1,4 +1,5 @@
 import Template from './classes/template.js';
+import Utils from './classes/utils.js';
 import layout from './layout/layout.html';
 import canvas from './layout/canvas.html';
 import menu from './layout/menu.html';
@@ -9,9 +10,21 @@ import Toolbar from './classes/toolbar';
  * Represents a builder.
  * @constructor
  * @param {jQuery} container - Container element for builder.
+ * @param {Object} properties - Builder options comes from initializer.
  */
 export default class Builder {
-  constructor(container) {
+  constructor(container, properties = {}) {
+    this.properties = {
+      template: properties.template.length ?
+        properties.template :
+        'initial_template',
+      paths: {
+        templates: properties.paths.templates.length ?
+          properties.paths.templates :
+          '/templates',
+      },
+    };
+
     this.container = container;
     this.layout = layout;
     this.menu = menu;
@@ -19,11 +32,14 @@ export default class Builder {
     this.options = options;
     this.canvas = canvas;
     this.template = {};
-    this.loadAssets();
-    this.initLayout();
-    this.initTemplate();
-
-    this.initToolbar();
+    try {
+      this.loadAssets();
+      this.initLayout();
+      this.initToolbar();
+      this.initTemplate();
+    } catch (err) {
+      Utils.showError(err);
+    }
   }
 
   /**
@@ -40,6 +56,9 @@ export default class Builder {
     toolbar.initLayout();
   }
 
+  /**
+   * Loading html content to layout variables
+   */
   loadAssets() {
     this.layout = this.layout.replace('[[ BLOCK:CANVAS ]]', this.canvas)
         .replace('[[ BLOCK:MENU ]]', this.menu)
@@ -47,11 +66,20 @@ export default class Builder {
         .replace('[[ BLOCK:TOOLBAR ]]', this.toolbarHtml);
   }
 
+  /**
+   * Set container html with layout
+   */
   initLayout() {
     this.container.html(this.layout);
   }
 
+  /**
+   * Load initial template using constructor properties
+   */
   initTemplate() {
-    this.template = new Template('initial_template');
+    this.template = new Template(
+        this.properties.template,
+        this.properties.paths.templates
+    );
   }
 }

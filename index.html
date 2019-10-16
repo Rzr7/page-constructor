@@ -20,6 +20,11 @@
     </div>
 </body>
 <script>
-  var construct = new PageEditor($('#constructor'));
+  var construct = new PageEditor($('#constructor'), {
+      template: "initial_template",
+      paths: {
+          "templates": "/templates"
+      }
+  });
 </script>
 </html>

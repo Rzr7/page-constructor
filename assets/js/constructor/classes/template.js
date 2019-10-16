@@ -5,46 +5,87 @@ import Utils from './utils.js';
  * Represents a template.
  * @constructor
  * @param {String} id - Template id (folder name).
+ * @param {String} path - Template path to folder.
  */
 export default class Template {
-  constructor(id) {
+  constructor(id, path) {
     this.templateId = id;
     this.blocks = {};
     this.templateInfo = {};
-    this.path = '/templates/' + this.templateId;
+    this.path = path + '/' + this.templateId;
     this.parseTemplate();
     this.parseBlocks();
   }
 
+  /**
+   * Parse template data from template.json file.
+   * @throws {Error} - Path to template is invalid/not reachable
+   */
   parseTemplate() {
-    const templatePath = this.path + '/template.json';
-    this.templateInfo = Utils.get(templatePath);
+    const templatePath = this.path + '/template.json?' +
+      new Date().getMilliseconds();
+    const templateInfo = Utils.get(templatePath);
+    if (!templateInfo) {
+      throw new Error('Invalid template/template path');
+    }
+    this.templateInfo = templateInfo;
   }
 
+  /**
+   * Parse block data from block.json file and create block object.
+   * @throws {Error} - Block is not existing
+   */
   parseBlocks() {
     const blocksPath = this.path + '/blocks/';
     const that = this;
     $.each(this.templateInfo.blocks, function(k, block) {
+      const blockInfo = Utils.get(blocksPath + block + '/block.json?' +
+        new Date().getMilliseconds());
+      if (!blockInfo) {
+        throw new Error('Invalid block ("' + block + '")');
+      }
       that.createBlock(
           block,
-          Utils.get(blocksPath + block + '/block.json'),
-          blocksPath + block,
+          blockInfo,
+          blocksPath + block
       );
     });
   }
 
-  createBlock(blockId, blockData, url, id) {
-    this.blocks[blockId] = new Block(blockId, blockData, url, id);
+  /**
+   * Create block object and add it to template blocks array.
+   * @param {String} blockId - Block name.
+   * @param {String} blockData - Block json data.
+   * @param {String} url - Path to block folder.
+   */
+  createBlock(blockId, blockData, url) {
+    this.blocks[blockId] = new Block(blockId, blockData, url);
   }
 
+  /**
+   * Get block html string
+   * @param {String} blockId - Block name.
+   * @return {String} Block html
+   */
   getBlockHtml(blockId) {
     return this.getBlock(blockId).getHtml();
   }
 
+  /**
+   * Get block object
+   * @param {String} blockId - Block name.
+   * @return {Block} Block object
+   */
   getBlock(blockId) {
     return this.blocks[blockId];
   }
 
+  /**
+   * Get block thumbnail
+   * @param {String} blockId - Block name.
+   * @param {Boolean} getUrl - Do we need only url or image object?
+   * @return {(String|Image)} Thumbnail Url or Image object
+   */
   getBlockThumbnail(blockId, getUrl = false) {
     return this.getBlock(blockId).getThumbnail(getUrl);
   }
