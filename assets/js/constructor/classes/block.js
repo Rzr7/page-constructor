@@ -61,7 +61,7 @@ export default class Block {
   /**
    * Get block option from json.
    * @param {Boolean} getUrl - Do we need url or Image object?
-   * @return {(number|String|Array)} Block option
+   * @return {(String|Image)} Block thumbnail
    */
   getThumbnail(getUrl = false) {
     const url = this.path + '/' + this.getOption('thumbnail');
