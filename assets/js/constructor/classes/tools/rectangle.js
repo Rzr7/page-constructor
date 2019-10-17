@@ -4,7 +4,7 @@
 * @param index - tool's position in toolbar
 */
 
-class Rectangle {
+export default class Rectangle {
   constructor(toolName, index, image, toolId) {
     this.toolName = toolName;
     this.index = index;

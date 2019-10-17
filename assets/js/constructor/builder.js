@@ -6,6 +6,8 @@ import menu from './layout/menu.html';
 import options from './layout/options.html';
 import toolbarHtml from './layout/toolbar.html';
 import Toolbar from './classes/toolbar';
+import Rectangle from './classes/tools/rectangle.js';
+import Text from './classes/tools/text.js';
 
 const environment = 'dev';
 /**
@@ -34,6 +36,7 @@ export default class Builder {
     this.options = options;
     this.canvas = canvas;
     this.template = {};
+    this.toolbar = {};
     try {
       this.loadAssets();
       this.initLayout();
@@ -56,10 +59,10 @@ export default class Builder {
    * Tool ID is a unique ID for the tool
    */
   initToolbar() {
-    const toolbar = new Toolbar($('#toolbar'), this.template);
-    toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
-    toolbar.add(new Text('Text', 1, '', 'text-tool'));
-    toolbar.initLayout();
+    this.toolbar = new Toolbar($('#toolbar'), this.template);
+    this.toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
+    this.toolbar.add(new Text('Text', 1, '', 'text-tool'));
+    this.toolbar.initLayout();
   }
 
   /**

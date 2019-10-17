@@ -48,18 +48,6 @@ export default class Toolbar {
     });
   }
 
-  readFile(fileName) {
-    let fileData = '';
-    jQuery.ajax({
-      url: fileName,
-      success: function(data) {
-        fileData = data;
-      },
-      async: false,
-    });
-    return fileData;
-  }
-
   makeArrayOfObjects() {
     console.log('test', this.newTemplate.blocks);
     this.blocksArray = [];
