@@ -6,6 +6,7 @@ import menu from './layout/menu.html';
 import options from './layout/options.html';
 import toolbarHtml from './layout/toolbar.html';
 import Toolbar from './classes/toolbar';
+
 /**
  * Represents a builder.
  * @constructor
@@ -15,14 +16,12 @@ import Toolbar from './classes/toolbar';
 export default class Builder {
   constructor(container, properties = {}) {
     this.properties = {
-      template: properties.includes('template') ?
+      template: properties.template.length ?
         properties.template :
         'initial_template',
       paths: {
-        templates: properties.includes('paths') ?
-          (properties.paths.includes('templates') ?
-            properties.paths.templates :
-            '/templates') :
+        templates: properties.paths.templates.length ?
+          properties.paths.templates :
           '/templates',
       },
     };
@@ -72,7 +71,7 @@ export default class Builder {
    * Set container html with layout
    */
   initLayout() {
-    this.container.html(this.layout);
+    this.container.append(this.layout);
   }
 
   /**
