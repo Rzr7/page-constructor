@@ -8,6 +8,7 @@ import toolbarHtml from './layout/toolbar.html';
 import Toolbar from './classes/toolbar';
 import Rectangle from './classes/tools/rectangle.js';
 import Text from './classes/tools/text.js';
+import Tree from './classes/tree.js';
 import Tool from './classes/tools/tool.js';
 
 // import { Draggable } from '@shopify/draggable';
@@ -38,17 +39,19 @@ export default class Builder {
     this.toolbarHtml = toolbarHtml;
     this.options = options;
     this.canvas = canvas;
+    this.tree;
     this.template = {};
     this.toolbar = {};
     try {
       this.loadAssets();
+      this.initTree();
       this.initLayout();
       this.initTemplate();
       this.initToolbar();
       this.initDragAndDrop();
     } catch (err) {
       if (environment === 'dev') {
-        return Error(err);
+        throw err;
       } else {
         Utils.showError(err);
       }
@@ -89,10 +92,14 @@ export default class Builder {
     this.container[0].innerHTML = this.layout;
   }
 
+  initTree() {
+    this.tree = new Tree($('#explorer'));
+  }
+
   /**
    * Load initial template using constructor properties
    */
-  async initTemplate() {
+  initTemplate() {
     this.template = new Template(
         this.properties.template,
         this.properties.paths.templates
@@ -100,7 +107,7 @@ export default class Builder {
   }
 
   initDragAndDrop() {
-    const draggable = new Draggable($('#toolbar-blocks-content'), {
+    const draggable = new Draggable($('#toolbar-blocks-content')[0], {
       draggable: '.pcons-block-preview',
     });
     draggable.on('drag:start', () => console.log('drag:start'));
