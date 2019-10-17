@@ -14,7 +14,7 @@ import Toolbar from './classes/toolbar';
  * @param {Object} properties - Builder options comes from initializer.
  */
 export default class Builder {
-  constructor(container, properties = {}) {
+  constructor(container, properties) {
     this.properties = {
       template: properties.template.length ?
         properties.template :
@@ -25,19 +25,18 @@ export default class Builder {
           '/templates',
       },
     };
-
     this.container = container;
     this.layout = layout;
     this.menu = menu;
     this.toolbarHtml = toolbarHtml;
     this.options = options;
     this.canvas = canvas;
-    this.template = {};
+    this.template;
     try {
       this.loadAssets();
-      this.initLayout();
       this.initToolbar();
       this.initTemplate();
+      this.initLayout();
     } catch (err) {
       Utils.showError(err);
     }
@@ -55,6 +54,7 @@ export default class Builder {
     toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
     toolbar.add(new Text('Text', 1, '', 'text-tool'));
     toolbar.initLayout();
+    console.log('toolbar INIT');
   }
 
   /**
@@ -65,13 +65,15 @@ export default class Builder {
         .replace('[[ BLOCK:MENU ]]', this.menu)
         .replace('[[ BLOCK:OPTIONS ]]', this.options)
         .replace('[[ BLOCK:TOOLBAR ]]', this.toolbarHtml);
+    console.log('assets loaded');
   }
 
   /**
    * Set container html with layout
    */
   initLayout() {
-    this.container.append(this.layout);
+    console.log('CONTAINER', this.container);
+    this.container.html(this.layout);
   }
 
   /**
@@ -82,5 +84,6 @@ export default class Builder {
         this.properties.template,
         this.properties.paths.templates
     );
+    console.log('template init');
   }
 }
