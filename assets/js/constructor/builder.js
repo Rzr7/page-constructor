@@ -61,19 +61,10 @@ export default class Builder {
    */
 
   initToolbar() {
-    try {
-      // eslint-disable-next-line prefer-const
-      let toolbar = new Toolbar($('#toolbar'), this.template);
-      toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
-      toolbar.add(new Text('Text', 1, '', 'text-tool'));
-      toolbar.initLayout();
-    } catch (err) {
-      if (environment === 'dev') {
-        return Error(err);
-      } else {
-        Utils.showError(err);
-      };
-    }
+    this.toolbar = new Toolbar($('#toolbar'), this.template);
+    this.toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
+    this.toolbar.add(new Text('Text', 1, '', 'text-tool'));
+    this.toolbar.initLayout();
 
     console.log('init toolbar');
   }
