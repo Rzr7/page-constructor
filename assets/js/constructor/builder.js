@@ -117,25 +117,37 @@ export default class Builder {
       containment: 'parent',
       forcePlaceholderSize: true,
       opacity: .4,
-      revertDuration: 100,
+      delay: 100,
+      revertDuration: 200,
       placeholder: 'placeholder',
       start: function(e, ui) {
         ui.placeholder.css('opacity', .6);
-        ui.placeholder.html(ui.item.html());
+        ui.placeholder.css('border', '3px solid #009005');
+        ui.placeholder = ui.item;
+      },
+      stop: function(event, ui) {
+        ui.item.removeAttr('style');
+        ui.placeholder.remove();
       },
     });
     $('.pcons-block-preview').draggable({
       connectToSortable: '.canvas',
       revert: 'invalid',
       cursor: 'move',
-      cursorAt: { top: -12, left: -20 },
+      delay: 100,
       helper: function( event ) {
         const blockId = event.currentTarget.getAttribute('data-block');
         return that.template.getBlockHtml(blockId);
       },
-      revertDuration: 100,
+      revertDuration: 200,
       tolerance: 'pointer',
       forcePlaceholderSize: true,
+      start: function(ev, ui) {
+        ui.helper.css('width', '300px');
+      },
+      stop: function(event, ui) {
+        ui.helper.removeAttr('style');
+      },
     });
 
     $('.pcons-block-preview').disableSelection();
