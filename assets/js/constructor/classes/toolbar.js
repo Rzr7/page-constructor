@@ -92,7 +92,6 @@ export default class Toolbar {
          <p class="pcons-block-preview-name">` + block.data.name + `</p>
          </div>`;
     });
-    console.log(this.blocksHtml);
   }
 
   initLayout() {
@@ -101,16 +100,8 @@ export default class Toolbar {
      *
      */
 
-    $('#toolbar-tools-content').html(`
-        <div>
-            <!-- Tools are in HTML form here -->
-            ` + this.toolsHtml + '</div>'
-    );
-    $('#toolbar-blocks-content').html(`
-        <div>
-            <!-- Blocks are in HTML form here -->
-            ` + this.blocksHtml + '</div>'
-    );
+    $('#toolbar-tools-content').html(this.toolsHtml);
+    $('#toolbar-blocks-content').html(this.blocksHtml);
   }
 }
 
