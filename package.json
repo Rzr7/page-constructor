@@ -4,10 +4,10 @@
   "description": "Page costructor",
   "main": "index.js",
   "dependencies": {
-    "@shopify/draggable": "^1.0.0-beta.8",
-    "bootstrap": "^4.3.1",
     "debug": "latest",
     "dotenv": "^8.1.0",
+    "jquery": "^3.4.1",
+    "jquery-ui-bundle": "^1.12.1-migrate",
     "popper.js": "^1.15.0",
     "sweetalert2": "^8.18.4"
   },

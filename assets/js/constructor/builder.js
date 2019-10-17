@@ -9,9 +9,7 @@ import Toolbar from './classes/toolbar';
 import Rectangle from './classes/tools/rectangle.js';
 import Text from './classes/tools/text.js';
 import Tool from './classes/tools/tool.js';
-
-// import { Draggable } from '@shopify/draggable';
-import Draggable from '@shopify/draggable/lib/draggable';
+import 'jquery-ui-bundle';
 
 const environment = 'dev';
 /**
@@ -41,9 +39,9 @@ export default class Builder {
     this.template = {};
     this.toolbar = {};
     try {
+      this.initTemplate();
       this.loadAssets();
       this.initLayout();
-      this.initTemplate();
       this.initToolbar();
       this.initDragAndDrop();
     } catch (err) {
@@ -68,14 +66,15 @@ export default class Builder {
     this.toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
     this.toolbar.add(new Text('Text', 1, '', 'text-tool'));
     this.toolbar.initLayout();
-
-    console.log('init toolbar');
   }
 
   /**
    * Loading html content to layout variables
    */
   loadAssets() {
+    const stylesLink = '<link rel="stylesheet" href="' +
+      this.template.getStyles() + '" />';
+    this.layout = stylesLink + this.layout;
     this.layout = this.layout.replace('[[ BLOCK:CANVAS ]]', this.canvas)
         .replace('[[ BLOCK:MENU ]]', this.menu)
         .replace('[[ BLOCK:OPTIONS ]]', this.options)
@@ -99,12 +98,39 @@ export default class Builder {
     );
   }
 
+  /**
+   * Drag and drop initializer.
+   * Sets up draggable elements and areas.
+   */
   initDragAndDrop() {
-    const draggable = new Draggable($('#constructor')[0], {
-      draggable: '.pcons-block-preview',
+    const that = this;
+    $('.canvas').sortable({
+      revert: true,
+      cursor: 'move',
+      containment: 'parent',
+      forcePlaceholderSize: true,
+      opacity: .4,
+      revertDuration: 100,
+      placeholder: 'placeholder',
+      start: function(e, ui) {
+        ui.placeholder.css('opacity', .6);
+        ui.placeholder.html(ui.item.html());
+      },
     });
-    draggable.on('drag:start', () => console.log('drag:start'));
-    draggable.on('drag:move', () => console.log('drag:move'));
-    draggable.on('drag:stop', () => console.log('drag:stop'));
+    $('.pcons-block-preview').draggable({
+      connectToSortable: '.canvas',
+      revert: 'invalid',
+      cursor: 'move',
+      cursorAt: { top: -12, left: -20 },
+      helper: function( event ) {
+        const blockId = event.currentTarget.getAttribute('data-block');
+        return that.template.getBlockHtml(blockId);
+      },
+      revertDuration: 100,
+      tolerance: 'pointer',
+      forcePlaceholderSize: true,
+    });
+
+    $('.pcons-block-preview').disableSelection();
   }
 }
