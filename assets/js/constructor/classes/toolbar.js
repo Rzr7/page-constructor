@@ -58,6 +58,7 @@ export default class Toolbar {
     this.blocksArray = [];
     const keys = Object.keys(this.newTemplate.blocks);
     keys.map((key) => {
+      this.newTemplate.blocks[key]['key'] = key;
       this.blocksArray.push(this.newTemplate.blocks[key]);
     });
     console.log(this.blocksArray);
@@ -89,9 +90,8 @@ export default class Toolbar {
 
     this.blocksArray.map((block) => {
       this.blocksHtml +=
-          `
-        <div class="pcons-block-preview" id="` +
-         block.data.id +
+          '<div class="pcons-block-preview" data-block="' + block.key +
+        '" id="' + block.data.id +
          '"><img class="pcons-block-preview-image" src="'+block.path +
          '/' + block.data.thumbnail+`" />
          <p class="pcons-block-preview-name">` + block.data.name + `</p>

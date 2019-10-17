@@ -13,6 +13,7 @@ export default class Template {
     this.blocks = {};
     this.templateInfo = {};
     this.path = path + '/' + this.templateId;
+    this.styles = this.path + '/assets/css/styles.css';
     this.parseTemplate();
     this.parseBlocks();
   }
@@ -78,6 +79,14 @@ export default class Template {
    */
   getBlock(blockId) {
     return this.blocks[blockId];
+  }
+
+  /**
+   * Get styles link
+   * @return {String} Styles file link
+   */
+  getStyles() {
+    return this.styles;
   }
 
   /**
