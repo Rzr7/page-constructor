@@ -46,7 +46,7 @@ export default class Builder {
       this.initDragAndDrop();
     } catch (err) {
       if (environment === 'dev') {
-        return Error(err);
+        console.error(err);
       } else {
         Utils.showError(err);
       }
@@ -95,7 +95,7 @@ export default class Builder {
   }
 
   initDragAndDrop() {
-    const draggable = new Draggable($('#toolbar-blocks-content'), {
+    const draggable = new Draggable($('#constructor'), {
       draggable: '.pcons-block-preview',
     });
     draggable.on('drag:start', () => console.log('drag:start'));
