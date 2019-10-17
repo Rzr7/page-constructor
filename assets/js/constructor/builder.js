@@ -10,7 +10,8 @@ import Rectangle from './classes/tools/rectangle.js';
 import Text from './classes/tools/text.js';
 import Tool from './classes/tools/tool.js';
 
-import { Draggable } from '@shopify/draggable';
+// import { Draggable } from '@shopify/draggable';
+import Draggable from '@shopify/draggable/lib/draggable';
 
 const environment = 'dev';
 /**
