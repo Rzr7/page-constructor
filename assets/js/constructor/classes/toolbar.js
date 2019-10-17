@@ -7,14 +7,14 @@ import Block from './block.js';
  * @param {jQuery} toolbar - toolbar.
  */
 export default class Toolbar {
-  constructor(toolbar) {
+  constructor(toolbar, template) {
     this.toolbar = toolbar;
     this.toolsHtml = '';
     this.toolArray = [];
     this.blocksHtml = '';
     this.blocksArray = [];
     this.activeToolbarPanel;
-    this.newTemplate = new Template('initial_template');
+    this.newTemplate = template;
     $('#toolbar-blocks-content').hide();
     this.actions();
     this.makeArrayOfObjects();
