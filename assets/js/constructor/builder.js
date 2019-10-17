@@ -36,8 +36,8 @@ export default class Builder {
     try {
       this.loadAssets();
       this.initLayout();
-      this.initToolbar();
       this.initTemplate();
+      this.initToolbar();
     } catch (err) {
       Utils.showError(err);
     }
@@ -51,7 +51,7 @@ export default class Builder {
    * Tool ID is a unique ID for the tool
    */
   initToolbar() {
-    const toolbar = new Toolbar($('#toolbar'));
+    const toolbar = new Toolbar($('#toolbar'), this.template);
     toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
     toolbar.add(new Text('Text', 1, '', 'text-tool'));
     toolbar.initLayout();
@@ -71,7 +71,7 @@ export default class Builder {
    * Set container html with layout
    */
   initLayout() {
-    this.container.append(this.layout);
+    this.container.html(this.layout);
   }
 
   /**
