@@ -15,12 +15,14 @@ import Toolbar from './classes/toolbar';
 export default class Builder {
   constructor(container, properties = {}) {
     this.properties = {
-      template: properties.template.length ?
+      template: properties.includes('template') ?
         properties.template :
         'initial_template',
       paths: {
-        templates: properties.paths.templates.length ?
-          properties.paths.templates :
+        templates: properties.includes('paths') ?
+          (properties.paths.includes('templates') ?
+            properties.paths.templates :
+            '/templates') :
           '/templates',
       },
     };
