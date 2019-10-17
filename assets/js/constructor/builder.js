@@ -36,7 +36,8 @@ export default class Builder {
     this.toolbarHtml = toolbarHtml;
     this.options = options;
     this.canvas = canvas;
-    this.template;
+    this.template = {};
+    this.toolbar = {};
     try {
       this.loadAssets();
       this.initLayout();
