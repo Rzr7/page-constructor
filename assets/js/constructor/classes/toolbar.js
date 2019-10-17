@@ -26,6 +26,10 @@ export default class Toolbar {
   }
 
   actions() {
+    /**
+     * Switches Block & Tools buttons, showing and hiding
+     * content from different divs
+     */
     $('#tools-button').click( () => {
       if ($('#blocks-button').hasClass('active')) {
         $('#tools-button').addClass('active');
@@ -61,6 +65,9 @@ export default class Toolbar {
   }
 
   makeArrayOfObjects() {
+    /**
+     * Array of Object type template.blocks
+     */
     console.log('test', this.newTemplate.blocks);
     this.blocksArray = [];
     const keys = Object.keys(this.newTemplate.blocks);
@@ -110,7 +117,7 @@ export default class Toolbar {
   initLayout() {
     /**
      * Replaces tools.html body with a list of "tool" buttons
-     *
+     * Also replaces #toolbar-blocks-content with template blocks
      */
 
     $('#toolbar-tools-content').html(`
