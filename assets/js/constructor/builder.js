@@ -8,6 +8,9 @@ import toolbarHtml from './layout/toolbar.html';
 import Toolbar from './classes/toolbar';
 import Rectangle from './classes/tools/rectangle.js';
 import Text from './classes/tools/text.js';
+import Tool from './classes/tools/tool.js';
+
+// import { Draggable } from '@shopify/draggable';
 import Draggable from '@shopify/draggable/lib/draggable';
 
 const environment = 'dev';
@@ -18,7 +21,7 @@ const environment = 'dev';
  * @param {Object} properties - Builder options comes from initializer.
  */
 export default class Builder {
-  constructor(container, properties = {}) {
+  constructor(container, properties) {
     this.properties = {
       template: properties.template.length ?
         properties.template :
@@ -29,7 +32,6 @@ export default class Builder {
           '/templates',
       },
     };
-
     this.container = container;
     this.layout = layout;
     this.menu = menu;
@@ -60,11 +62,14 @@ export default class Builder {
    * Image is stored in assets/src/images and are all 64x64 (mby change later?)
    * Tool ID is a unique ID for the tool
    */
+
   initToolbar() {
     this.toolbar = new Toolbar($('#toolbar'), this.template);
     this.toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
     this.toolbar.add(new Text('Text', 1, '', 'text-tool'));
     this.toolbar.initLayout();
+
+    console.log('init toolbar');
   }
 
   /**
@@ -87,7 +92,7 @@ export default class Builder {
   /**
    * Load initial template using constructor properties
    */
-  initTemplate() {
+  async initTemplate() {
     this.template = new Template(
         this.properties.template,
         this.properties.paths.templates
