@@ -41,7 +41,7 @@ export default class Builder {
       this.initToolbar();
     } catch (err) {
       if (environment === 'dev') {
-        throw new err;
+        return Error(err);
       } else {
         Utils.showError(err);
       }
@@ -76,7 +76,7 @@ export default class Builder {
    * Set container html with layout
    */
   initLayout() {
-    this.container.html(this.layout);
+    this.container[0].innerHTML = this.layout;
   }
 
   /**
