@@ -8,8 +8,7 @@
     "debug": "latest",
     "dotenv": "^8.1.0",
     "popper.js": "^1.15.0",
-    "sweetalert2": "^8.18.4",
-    "jquery": "^3.4.1"
+    "sweetalert2": "^8.18.4"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

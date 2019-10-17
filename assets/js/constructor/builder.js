@@ -7,6 +7,7 @@ import options from './layout/options.html';
 import toolbarHtml from './layout/toolbar.html';
 import Toolbar from './classes/toolbar';
 
+const environment = 'dev';
 /**
  * Represents a builder.
  * @constructor
@@ -38,7 +39,11 @@ export default class Builder {
       this.initTemplate();
       this.initToolbar();
     } catch (err) {
-      Utils.showError(err);
+      if (environment === 'dev') {
+        return Error(err);
+      } else {
+        Utils.showError(err);
+      }
     }
   }
 
