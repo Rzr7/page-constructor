@@ -10,6 +10,7 @@ import Rectangle from './classes/tools/rectangle.js';
 import Text from './classes/tools/text.js';
 import Tool from './classes/tools/tool.js';
 
+import { Draggable } from '@shopify/draggable';
 
 const environment = 'dev';
 /**
@@ -43,6 +44,7 @@ export default class Builder {
       this.initLayout();
       this.initTemplate();
       this.initToolbar();
+      this.initDragAndDrop();
     } catch (err) {
       if (environment === 'dev') {
         return Error(err);
@@ -94,5 +96,14 @@ export default class Builder {
         this.properties.template,
         this.properties.paths.templates
     );
+  }
+
+  initDragAndDrop() {
+    const draggable = new Draggable($('#toolbar-blocks-content'), {
+      draggable: '.pcons-block-preview',
+    });
+    draggable.on('drag:start', () => console.log('drag:start'));
+    draggable.on('drag:move', () => console.log('drag:move'));
+    draggable.on('drag:stop', () => console.log('drag:stop'));
   }
 }
