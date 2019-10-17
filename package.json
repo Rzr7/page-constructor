@@ -31,14 +31,12 @@
     "rollup-plugin-uglify": "^6.0.3",
     "watch": "^1.0.2"
   },
-  
   "watch": {
-      "auto": {
-        "delay": 200,
-        "runOnChangeOnly": true
-      }  
-    },
-  
+    "auto": {
+      "delay": 200,
+      "runOnChangeOnly": true
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c && lessc ./assets/css/styles.less ./dist/styles.css",
