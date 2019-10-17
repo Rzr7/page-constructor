@@ -48,7 +48,7 @@ export default class Builder {
       this.initDragAndDrop();
     } catch (err) {
       if (environment === 'dev') {
-        console.error(err);
+        throw err;
       } else {
         Utils.showError(err);
       }
@@ -92,7 +92,7 @@ export default class Builder {
   /**
    * Load initial template using constructor properties
    */
-  async initTemplate() {
+  initTemplate() {
     this.template = new Template(
         this.properties.template,
         this.properties.paths.templates
@@ -100,7 +100,7 @@ export default class Builder {
   }
 
   initDragAndDrop() {
-    const draggable = new Draggable($('#constructor'), {
+    const draggable = new Draggable($('#constructor')[0], {
       draggable: '.pcons-block-preview',
     });
     draggable.on('drag:start', () => console.log('drag:start'));
