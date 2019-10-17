@@ -3,7 +3,7 @@
  *
  */
 
-class Tool {
+export default class Tool {
   constructor() {
 
   }

@@ -6,6 +6,10 @@ import menu from './layout/menu.html';
 import options from './layout/options.html';
 import toolbarHtml from './layout/toolbar.html';
 import Toolbar from './classes/toolbar';
+import Rectangle from './classes/tools/rectangle.js';
+import Text from './classes/tools/text.js';
+import Tool from './classes/tools/tool.js';
+
 
 const environment = 'dev';
 /**
@@ -54,11 +58,23 @@ export default class Builder {
    * Image is stored in assets/src/images and are all 64x64 (mby change later?)
    * Tool ID is a unique ID for the tool
    */
+
   initToolbar() {
-    const toolbar = new Toolbar($('#toolbar'), this.template);
-    toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
-    toolbar.add(new Text('Text', 1, '', 'text-tool'));
-    toolbar.initLayout();
+    try {
+      // eslint-disable-next-line prefer-const
+      let toolbar = new Toolbar($('#toolbar'), this.template);
+      toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
+      toolbar.add(new Text('Text', 1, '', 'text-tool'));
+      toolbar.initLayout();
+    } catch (err) {
+      if (environment === 'dev') {
+        return Error(err);
+      } else {
+        Utils.showError(err);
+      };
+    }
+
+    console.log('init toolbar');
   }
 
   /**
@@ -81,11 +97,10 @@ export default class Builder {
   /**
    * Load initial template using constructor properties
    */
-  initTemplate() {
+  async initTemplate() {
     this.template = new Template(
         this.properties.template,
         this.properties.paths.templates
     );
-    console.log('template init');
   }
 }

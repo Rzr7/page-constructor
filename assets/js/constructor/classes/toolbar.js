@@ -39,7 +39,6 @@ export default class Toolbar {
         $('#blocks-button').removeClass('active');
         this.activeToolbarPanel = 'tools';
       }
-      console.log(this.activeToolbarPanel);
     });
     $('#blocks-button').click( () => {
       if ($('#tools-button').hasClass('active')) {
@@ -68,7 +67,6 @@ export default class Toolbar {
     /**
      * Array of Object type template.blocks
      */
-    console.log('test', this.newTemplate.blocks);
     this.blocksArray = [];
     const keys = Object.keys(this.newTemplate.blocks);
     keys.map((key) => {
@@ -111,7 +109,6 @@ export default class Toolbar {
          <p class="pcons-block-preview-name">` + block.data.name + `</p>
          </div>`;
     });
-    console.log(this.blocksHtml);
   }
 
   initLayout() {
