@@ -105,16 +105,8 @@ export default class Toolbar {
      * Also replaces #toolbar-blocks-content with template blocks
      */
 
-    $('#toolbar-tools-content').html(`
-        <div>
-            <!-- Tools are in HTML form here -->
-            ` + this.toolsHtml + '</div>'
-    );
-    $('#toolbar-blocks-content').html(`
-        <div>
-            <!-- Blocks are in HTML form here -->
-            ` + this.blocksHtml + '</div>'
-    );
+    $('#toolbar-tools-content').html(this.toolsHtml);
+    $('#toolbar-blocks-content').html(this.blocksHtml);
   }
 }
 
