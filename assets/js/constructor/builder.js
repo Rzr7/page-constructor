@@ -8,7 +8,7 @@ import toolbarHtml from './layout/toolbar.html';
 import Toolbar from './classes/toolbar';
 import Rectangle from './classes/tools/rectangle.js';
 import Text from './classes/tools/text.js';
-import { Draggable } from '@shopify/draggable';
+import Draggable from '@shopify/draggable/lib/draggable';
 
 const environment = 'dev';
 /**
