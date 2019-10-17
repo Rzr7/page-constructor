@@ -54,7 +54,6 @@ export default class Builder {
     toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
     toolbar.add(new Text('Text', 1, '', 'text-tool'));
     toolbar.initLayout();
-    console.log('toolbar INIT');
   }
 
   /**
@@ -65,14 +64,13 @@ export default class Builder {
         .replace('[[ BLOCK:MENU ]]', this.menu)
         .replace('[[ BLOCK:OPTIONS ]]', this.options)
         .replace('[[ BLOCK:TOOLBAR ]]', this.toolbarHtml);
-    console.log('assets loaded');
   }
 
   /**
    * Set container html with layout
    */
   initLayout() {
-    this.container.html(this.layout);
+    this.container[0].innerHTML = this.layout;
   }
 
   /**
