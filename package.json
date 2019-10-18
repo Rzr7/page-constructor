@@ -9,6 +9,7 @@
     "jquery": "^3.4.1",
     "jquery-ui-bundle": "^1.12.1-migrate",
     "jquery.fancytree": "^2.32.0",
+    "jqueryfiletree": "^2.1.4",
     "popper.js": "^1.15.0",
     "sweetalert2": "^8.18.4"
   },

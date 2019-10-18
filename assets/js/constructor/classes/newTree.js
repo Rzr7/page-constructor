@@ -20,7 +20,6 @@ export default class Tree {
     this.tree = tree;
     this.selected = '123';
     this.initTree();
-    this.rootNode;
 
     console.log('Tree initiated successfully');
   }
@@ -36,11 +35,10 @@ export default class Tree {
 
     console.log('TREE RECIEVED', intoWhatId, block, 'ID:', id);
     const blockName = block.getAttribute('data-block');
-    // console.log('EXISTS?', this.rootNode);
     $('#explorer-tree').fancytree('getTree').getNodeByKey('1')
         .addChildren({
           title: blockName,
-          tooltip: 'what?',
+          tooltip: id,
         });
   }
 
@@ -49,36 +47,39 @@ export default class Tree {
      * Initialize a tree view
      */
     const that = this;
-    $('#explorer-tree').fancytree({
-      extensions: ['dnd5', 'edit', 'glyph', 'wide'],
-      glyph: {
-        preset: 'bootstrap3',
-        map: {
-          doc: 'fa fa-file-o',
-          docOpen: 'fa fa-file-o',
-          checkbox: 'fa fa-square-o',
-          checkboxSelected: 'fa fa-check-square-o',
-          checkboxUnknown: 'fa fa-square',
-          dragHelper: 'fa arrow-right',
-          dropMarker: 'fa long-arrow-right',
-          error: 'fa fa-warning',
-          expanderClosed: 'fa fa-caret-right',
-          expanderLazy: 'fa fa-angle-right',
-          expanderOpen: 'fa fa-caret-down',
-          folder: 'fa fa-folder-o',
-          folderOpen: 'fa fa-folder-open-o',
-          loading: 'fa fa-spinner fa-pulse',
+    $(function() {
+      $('#explorer-tree').fancytree({
+        extensions: ['dnd5', 'edit', 'glyph', 'wide'],
+        glyph: {
+          preset: 'awesome4',
+          map: {
+            doc: 'fa fa-file-o',
+            docOpen: 'fa fa-file-o',
+            checkbox: 'fa fa-square-o',
+            checkboxSelected: 'fa fa-check-square-o',
+            checkboxUnknown: 'fa fa-square',
+            dragHelper: 'fa arrow-right',
+            dropMarker: 'fa long-arrow-right',
+            error: 'fa fa-warning',
+            expanderClosed: 'fa fa-caret-right',
+            expanderLazy: 'fa fa-angle-right',
+            expanderOpen: 'fa fa-caret-down',
+            folder: 'fa fa-folder-o',
+            folderOpen: 'fa fa-folder-open-o',
+            loading: 'fa fa-spinner fa-pulse',
+          },
         },
-      },
-      icon: function(event, data) {
-        // if( data.node.isFolder() ) {
-        //   return "glyphicon glyphicon-book";
-        // }
-      },
-      source: [
-        {title: 'project-name', key: '1',
-          expanded: true},
-      ],
+        // icon: function(event, data) {
+        //   console.log(data.node);
+        //   if ( data.node.isFolder() ) {
+        //     return 'fa fa-folder-o';
+        //   };
+        // },
+        source: [
+          {title: 'project-name', key: '1', folder: true,
+            expanded: true},
+        ],
+      });
     });
   };
 }
