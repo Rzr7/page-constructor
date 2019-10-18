@@ -3,6 +3,7 @@
   "description": "First template",
   "author": "HyperWare team",
   "blocks": [
-    "title"
+    "title-1",
+    "header-1"
   ]
 }

@@ -16,6 +16,7 @@ export default class Block {
     this.defaults = {};
     this.html = '';
     this.initDefaults();
+    // this.assignId(); // WIP
     this.initHtml();
     this.parseVariables();
   }
@@ -27,6 +28,17 @@ export default class Block {
     const url = this.path + '/block.html?' +
       new Date().getMilliseconds();
     this.html = Utils.get(url);
+  }
+
+  assignId() {
+    /**
+     * Assign block its own ID with ID set in block.json
+     * and make id="" tag inside HTML root element
+     */
+    this.id = this.getOption('id');
+    // eslint-disable-next-line prefer-const
+    let blockHtml = Utils.get(this.path + '/block.html?');
+    const signedHtml = blockHtml.replace('>', ' id="'+this.id+'">');
   }
 
   /**

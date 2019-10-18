@@ -86,8 +86,6 @@ export default class Toolbar {
      * Maps all of the blocks into their own buttons
      *
      */
-    // this.blocksHtml = '';
-
     this.blocksArray.map((block) => {
       this.blocksHtml +=
           '<div class="pcons-block-preview" data-block="' + block.key +

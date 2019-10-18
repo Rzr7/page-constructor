@@ -8,7 +8,7 @@ import toolbarHtml from './layout/toolbar.html';
 import Toolbar from './classes/toolbar';
 import Rectangle from './classes/tools/rectangle.js';
 import Text from './classes/tools/text.js';
-import Tree from './classes/tree.js';
+import Tree from './classes/newTree.js';
 import Tool from './classes/tools/tool.js';
 import 'jquery-ui-bundle';
 
@@ -43,9 +43,9 @@ export default class Builder {
     try {
       this.initTemplate();
       this.loadAssets();
-      this.initTree();
       this.initLayout();
       this.initToolbar();
+      this.initTree();
       this.initDragAndDrop();
     } catch (err) {
       if (environment === 'dev') {
@@ -92,7 +92,7 @@ export default class Builder {
   }
 
   initTree() {
-    this.tree = new Tree($('#explorer'));
+    this.tree = new Tree($('#explorer-tree'));
   }
 
   /**
@@ -113,7 +113,6 @@ export default class Builder {
     const that = this;
     $('.canvas').sortable({
       revert: true,
-      cursor: 'move',
       containment: 'parent',
       forcePlaceholderSize: true,
       opacity: .4,
@@ -133,11 +132,15 @@ export default class Builder {
     $('.pcons-block-preview').draggable({
       connectToSortable: '.canvas',
       revert: 'invalid',
-      cursor: 'move',
+      cursor: 'pointer',
       delay: 100,
       helper: function( event ) {
         const blockId = event.currentTarget.getAttribute('data-block');
-        return that.template.getBlockHtml(blockId);
+        const unSignedHtml= that.template.getBlockHtml(blockId);
+        this.id = this.id+'#'+Math.ceil(Math.random() * 9999);
+        const signedHtml= that.template.getBlockHtml(blockId)
+            .replace('>', ' id="' + this.id + '">');
+        return signedHtml; // signedHtml contains block ID. Unsigned doesn't
       },
       revertDuration: 200,
       tolerance: 'pointer',
@@ -147,6 +150,7 @@ export default class Builder {
       },
       stop: function(event, ui) {
         ui.helper.removeAttr('style');
+        Tree.addItem('canvas', this, this.id);
       },
     });
 

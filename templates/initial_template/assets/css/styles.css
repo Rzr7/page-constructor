@@ -1,3 +1,14 @@
 .pcon-title_block h1 {
 	text-align: center;
 }
+
+.pcon-header-1-block {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    background-color: rgb(83, 119, 216);
+    text-align: center;
+    color: white;
+    font-size: 1.3rem;
+    
+}

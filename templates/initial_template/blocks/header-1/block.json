@@ -1,0 +1,17 @@
+{
+  "name": "Header 1",
+  "id": "initial_template_header_1",
+  "version": "0.1",
+  "alt": "Header block",
+  "category": "typography",
+  "thumbnail": "thumbnail.png",
+  "variables": {
+    "header": {
+      "type": "text",
+      "value": "Header",
+      "defaults": {
+        "color": "#FFF"
+      }
+    }
+  }
+}
