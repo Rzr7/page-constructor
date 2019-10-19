@@ -56,6 +56,11 @@ export default class Tree {
     }
   }
 
+  sortTree() {
+    const node = $('#explorer-tree').fancytree('getRootNode');
+    console.log(node.sortChildren(null, true));
+  }
+
   initTree() {
     /**
      * Initialize a tree view

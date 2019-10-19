@@ -11,6 +11,7 @@ import Text from './classes/tools/text.js';
 import Tree from './classes/newTree.js';
 import Tool from './classes/tools/tool.js';
 import 'jquery-ui-bundle';
+import Block from './classes/block.js';
 
 const environment = 'dev';
 /**
@@ -132,19 +133,24 @@ export default class Builder {
       },
       stop: function(event, ui) {
         /**
-         * Assign every block its unique ID and connecting it with
+         * Assign every block its unique ID and connect it with
          * the explorer tree
          */
         ui.item.removeAttr('style');
         ui.placeholder.remove();
 
-        $(ui.item[0]).attr('id', () => {
-          const idCode = '#'+Math.ceil(Math.random() * 9999);
-          return that.blockId+idCode;
-        });
-        ui.item[0].hasAttribute('draggedblock') ?
-        Tree.addItem('canvas', ui.item[0], that.blockName, ui.item[0].id) :
-        console.log('Block re-sorted, refreshing explorer (wip)');
+        // Block.getBlockId(ui.item[0]);
+        // that.tree.sortTree();
+
+        if (ui.item[0].hasAttribute('draggedblock')) {
+          $(ui.item[0]).attr('id', () => {
+            const idCode = '#'+Math.ceil(Math.random() * 9999);
+            return that.blockId+idCode;
+          });
+          Tree.addItem('canvas', ui.item[0], that.blockName, ui.item[0].id);
+        } else {
+          console.log('Block re-sorted, refreshing explorer (wip)');
+        }
       },
     });
     $('.pcons-block-preview').draggable({
@@ -156,14 +162,19 @@ export default class Builder {
         /**
          * Assigning block a 'draggedblock' attribute to make
          * sure it's a new block after sortable is finished
+         * so it's not added into explorer tree again
          */
-        const blockId = event.currentTarget.getAttribute('data-block');
-        that.blockName = blockId;
-        // eslint-disable-next-line prefer-const
-        let signedHtml= that.template.getBlockHtml(blockId);
-        signedHtml = signedHtml.replace('>', ' draggedblock>');
-        that.blockId = this.id;
-        return signedHtml;
+        try {
+          const blockId = event.currentTarget.getAttribute('data-block');
+          that.blockName = blockId;
+          // eslint-disable-next-line prefer-const
+          let signedHtml= that.template.getBlockHtml(blockId);
+          signedHtml = signedHtml.replace('>', ' draggedblock>');
+          that.blockId = this.id;
+          return signedHtml;
+        } catch (err) {
+          throw err;
+        }
       },
       revertDuration: 200,
       tolerance: 'pointer',

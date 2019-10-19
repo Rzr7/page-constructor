@@ -30,6 +30,20 @@ export default class Block {
     this.html = Utils.get(url);
   }
 
+
+  /**
+   *
+   * @param {*} block - Block element (not jquery or raw html)
+   * @return {Object} - Object with all ID related info
+   */
+  static getBlockId(block) {
+    const indexOfId = block.id.indexOf('#');
+    const idCode = block.id.slice(indexOfId, block.id.length);
+    const idInfo = {id: block.id, idCode,
+      defaultId: block.id.slice(0, indexOfId)};
+    return idInfo;
+  }
+
   assignId() {
     /**
      * Assign block its own ID with ID set in block.json
