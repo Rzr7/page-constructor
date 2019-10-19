@@ -118,41 +118,53 @@ export default class Builder {
    */
   initDragAndDrop() {
     const that = this;
-    $('.canvas').sortable({
-      revert: true,
-      containment: 'parent',
-      forcePlaceholderSize: true,
-      opacity: .4,
-      delay: 100,
-      revertDuration: 200,
-      placeholder: 'placeholder',
-      start: function(e, ui) {
-        ui.placeholder.css('opacity', .6);
-        ui.placeholder.css('border', '3px solid #009005');
-        ui.placeholder = ui.item;
-      },
-      stop: function(event, ui) {
-        /**
-         * Assign every block its unique ID and connect it with
-         * the explorer tree
-         */
-        ui.item.removeAttr('style');
-        ui.placeholder.remove();
+    try {
+      $('.canvas').sortable({
+        revert: true,
+        containment: 'parent',
+        forcePlaceholderSize: true,
+        opacity: .4,
+        delay: 100,
+        revertDuration: 200,
+        placeholder: 'placeholder',
+        start: function(e, ui) {
+          try {
+            ui.placeholder.css('opacity', .6);
+            ui.placeholder.css('border', '3px solid #009005');
+            ui.placeholder = ui.item;
+          } catch (error) {
+            throw error;
+          }
+        },
+        stop: function(event, ui) {
+          /**
+           * Assign every block its unique ID and connect it with
+           * the explorer tree
+           */
+          ui.item.removeAttr('style');
+          ui.placeholder.remove();
 
-        // Block.getBlockId(ui.item[0]);
-        // that.tree.sortTree();
+          // Block.getBlockId(ui.item[0]);
+          // that.tree.sortTree();
+          try {
+            if (ui.item[0].hasAttribute('draggedblock')) {
+              $(ui.item[0]).attr('id', () => {
+                const idCode = '#'+Math.ceil(Math.random() * 9999);
+                return that.blockId+idCode;
+              });
+              Tree.addItem('canvas', ui.item[0], that.blockName, ui.item[0].id);
+            } else {
+              console.log('Block re-sorted, refreshing explorer (wip)');
+            }
+          } catch (err) {
+            throw err;
+          }
+        },
+      });
+    } catch (error) {
+      throw error;
+    }
 
-        if (ui.item[0].hasAttribute('draggedblock')) {
-          $(ui.item[0]).attr('id', () => {
-            const idCode = '#'+Math.ceil(Math.random() * 9999);
-            return that.blockId+idCode;
-          });
-          Tree.addItem('canvas', ui.item[0], that.blockName, ui.item[0].id);
-        } else {
-          console.log('Block re-sorted, refreshing explorer (wip)');
-        }
-      },
-    });
     $('.pcons-block-preview').draggable({
       connectToSortable: '.canvas',
       revert: 'invalid',
