@@ -152,7 +152,8 @@ export default class Builder {
                 const idCode = '#'+Math.ceil(Math.random() * 9999);
                 return that.blockId+idCode;
               });
-              Tree.addItem('canvas', ui.item[0], that.blockName, ui.item[0].id);
+              that.tree.addItem('canvas', ui.item[0],
+                  that.blockName, ui.item[0].id);
             } else {
               console.log('Block re-sorted, refreshing explorer (wip)');
             }

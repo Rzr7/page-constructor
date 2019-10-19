@@ -13,18 +13,20 @@ console.log('Fancy tree #'+fancytree.version);
  * Workspace Tree by Martini dai Vincik
  * @param tree - jQuery request for an element with id "explorer"
  * @param selected - Selected tree node to view in Properties tab
+ * @var hierarchy - an array of blocks in order (wip)
  */
 
 export default class Tree {
   constructor(tree) {
     this.tree = tree;
+    this.hierarchy = [];
     this.selected = '123';
     this.initTree();
 
     console.log('Tree initiated successfully');
   }
 
-  static addItem(intoWhatId, block, blockName, id) {
+  addItem(intoWhatId, block, blockName, id) {
     /**
      * this will be used to add items into other items.
      * Connect them with id
@@ -34,14 +36,17 @@ export default class Tree {
      * @param blockName - block's folder name e.g. title-1, header-1
      * @param id - Block final id (with ~#3241 extensions)
      */
+    // console.log($('#explorer-tree').fancytree());
 
     // console.log('TREE RECIEVED', intoWhatId, block, blockName, 'ID:', id);
-
+    this.hierarchy.push({title: blockName, key: id});
+    console.log(this.hierarchy);
     try {
       /**
        * Check if block has been dragged from the templates tab
        * if not (re-sorted), isn't being added into explorer tree
        */
+
       const attr = block.hasAttribute('draggedblock');
       if (typeof attr !== typeof undefined && attr !== false) {
         $('#explorer-tree').fancytree('getTree').getNodeByKey(intoWhatId)
@@ -59,6 +64,9 @@ export default class Tree {
   sortTree() {
     const node = $('#explorer-tree').fancytree('getRootNode');
     console.log(node.sortChildren(null, true));
+  }
+
+  updateTree() {
   }
 
   initTree() {
@@ -95,9 +103,11 @@ export default class Tree {
         //   };
         // },
         source: [
-          {title: 'project-name', key: 'canvas', folder: true,
-            expanded: true},
-        ],
+          {title: 'project-name',
+            key: 'canvas',
+            folder: true,
+            expanded: true,
+            children: that.hierarchy }],
       });
     });
   };

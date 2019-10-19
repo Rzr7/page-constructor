@@ -19,6 +19,7 @@ export default class Block {
     // this.assignId(); // WIP
     this.initHtml();
     this.parseVariables();
+    console.log(this);
   }
 
   /**
