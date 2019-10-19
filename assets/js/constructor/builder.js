@@ -31,6 +31,8 @@ export default class Builder {
           '/templates',
       },
     };
+    this.blockName;
+    this.blockId;
     this.container = container;
     this.layout = layout;
     this.menu = menu;
@@ -38,6 +40,7 @@ export default class Builder {
     this.options = options;
     this.canvas = canvas;
     this.tree;
+    this.lastBlockIndex = 0;
     this.template = {};
     this.toolbar = {};
     try {
@@ -91,6 +94,9 @@ export default class Builder {
     this.container[0].innerHTML = this.layout;
   }
 
+  /**
+   * Load the tree layout
+   */
   initTree() {
     this.tree = new Tree($('#explorer-tree'));
   }
@@ -125,8 +131,20 @@ export default class Builder {
         ui.placeholder = ui.item;
       },
       stop: function(event, ui) {
+        /**
+         * Assign every block its unique ID and connecting it with
+         * the explorer tree
+         */
         ui.item.removeAttr('style');
         ui.placeholder.remove();
+
+        $(ui.item[0]).attr('id', () => {
+          const idCode = '#'+Math.ceil(Math.random() * 9999);
+          return that.blockId+idCode;
+        });
+        ui.item[0].hasAttribute('draggedblock') ?
+        Tree.addItem('canvas', ui.item[0], that.blockName, ui.item[0].id) :
+        console.log('Block re-sorted, refreshing explorer (wip)');
       },
     });
     $('.pcons-block-preview').draggable({
@@ -135,12 +153,17 @@ export default class Builder {
       cursor: 'pointer',
       delay: 100,
       helper: function( event ) {
+        /**
+         * Assigning block a 'draggedblock' attribute to make
+         * sure it's a new block after sortable is finished
+         */
         const blockId = event.currentTarget.getAttribute('data-block');
-        const unSignedHtml= that.template.getBlockHtml(blockId);
-        this.id = this.id+'#'+Math.ceil(Math.random() * 9999);
-        const signedHtml= that.template.getBlockHtml(blockId)
-            .replace('>', ' id="' + this.id + '">');
-        return signedHtml; // signedHtml contains block ID. Unsigned doesn't
+        that.blockName = blockId;
+        // eslint-disable-next-line prefer-const
+        let signedHtml= that.template.getBlockHtml(blockId);
+        signedHtml = signedHtml.replace('>', ' draggedblock>');
+        that.blockId = this.id;
+        return signedHtml;
       },
       revertDuration: 200,
       tolerance: 'pointer',

@@ -72,6 +72,10 @@ export default class Template {
     return this.getBlock(blockId).getHtml();
   }
 
+  // getBlockId(blockId) { WIP
+  //   console.log(this.getBlock(blockId));
+  // }
+
   /**
    * Get block object
    * @param {String} blockId - Block name.

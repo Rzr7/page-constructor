@@ -24,22 +24,36 @@ export default class Tree {
     console.log('Tree initiated successfully');
   }
 
-  static addItem(intoWhatId, block, id) {
+  static addItem(intoWhatId, block, blockName, id) {
     /**
      * this will be used to add items into other items.
      * Connect them with id
      * @param intoWhatId - is the tree entry,
      * inside of which a new element will be added
-     * @param block - a whole block to manipulate info
+     * @param block - a whole $ block to manipulate info
+     * @param blockName - block's folder name e.g. title-1, header-1
+     * @param id - Block final id (with ~#3241 extensions)
      */
 
-    console.log('TREE RECIEVED', intoWhatId, block, 'ID:', id);
-    const blockName = block.getAttribute('data-block');
-    $('#explorer-tree').fancytree('getTree').getNodeByKey('1')
-        .addChildren({
-          title: blockName,
-          tooltip: id,
-        });
+    // console.log('TREE RECIEVED', intoWhatId, block, blockName, 'ID:', id);
+
+    try {
+      /**
+       * Check if block has been dragged from the templates tab
+       * if not (re-sorted), isn't being added into explorer tree
+       */
+      const attr = block.hasAttribute('draggedblock');
+      if (typeof attr !== typeof undefined && attr !== false) {
+        $('#explorer-tree').fancytree('getTree').getNodeByKey(intoWhatId)
+            .addChildren({
+              title: blockName,
+              tooltip: id,
+            });
+      } ;
+      $(block).removeAttr('draggedblock');
+    } catch (err) {
+      throw err;
+    }
   }
 
   initTree() {
@@ -76,7 +90,7 @@ export default class Tree {
         //   };
         // },
         source: [
-          {title: 'project-name', key: '1', folder: true,
+          {title: 'project-name', key: 'canvas', folder: true,
             expanded: true},
         ],
       });
