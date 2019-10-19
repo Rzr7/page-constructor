@@ -39,34 +39,32 @@ export default class Tree {
     // console.log($('#explorer-tree').fancytree());
 
     // console.log('TREE RECIEVED', intoWhatId, block, blockName, 'ID:', id);
-    this.hierarchy.push({title: blockName, key: id});
     console.log(this.hierarchy);
     try {
       /**
        * Check if block has been dragged from the templates tab
        * if not (re-sorted), isn't being added into explorer tree
        */
-
-      const attr = block.hasAttribute('draggedblock');
-      if (typeof attr !== typeof undefined && attr !== false) {
-        $('#explorer-tree').fancytree('getTree').getNodeByKey(intoWhatId)
-            .addChildren({
-              title: blockName,
-              tooltip: id,
-            });
-      } ;
+      this.hierarchy.push({title: blockName, key: id});
       $(block).removeAttr('draggedblock');
     } catch (err) {
       throw err;
     }
   }
 
-  sortTree() {
-    const node = $('#explorer-tree').fancytree('getRootNode');
-    console.log(node.sortChildren(null, true));
+  setCanvasChildren(array) {
+    console.log('UPDATING TREE WITH', array);
+    this.hierarchy = array;
+    this.updateTree();
   }
 
   updateTree() {
+    $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
+        .removeChildren();
+    $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
+        .addChildren(this.hierarchy);
+    $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
+        setExpanded(true);
   }
 
   initTree() {
@@ -96,18 +94,13 @@ export default class Tree {
             loading: 'fa fa-spinner fa-pulse',
           },
         },
-        // icon: function(event, data) {
-        //   console.log(data.node);
-        //   if ( data.node.isFolder() ) {
-        //     return 'fa fa-folder-o';
-        //   };
-        // },
         source: [
           {title: 'project-name',
             key: 'canvas',
             folder: true,
             expanded: true,
             children: that.hierarchy }],
+
       });
     });
   };
