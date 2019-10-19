@@ -150,7 +150,6 @@ export default class Builder {
       },
       stop: function(event, ui) {
         ui.helper.removeAttr('style');
-        Tree.addItem('canvas', this, this.id);
       },
     });
 
