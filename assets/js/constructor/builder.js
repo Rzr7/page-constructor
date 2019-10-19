@@ -169,14 +169,11 @@ export default class Builder {
               that.tree.addItem('canvas', ui.item[0],
                   that.blockName, ui.item[0].id);
             } else {
-              console.log('Block re-sorted, refreshing explorer (wip)');
             }
           } catch (err) {
             throw err;
           }
-          console.log('BLOCKSARRAY', blocksArray);
           for (let i = 0; i < blocksArray.length; i++) {
-            console.log(blocksArray[i]);
             expectedTreeLayout.push({
               title: blocksArray[i].attributes.blockname.value,
               id: blocksArray[i].attributes.id.value});

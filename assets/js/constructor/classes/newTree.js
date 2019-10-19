@@ -7,8 +7,6 @@ import 'jquery.fancytree/dist/modules/jquery.fancytree.glyph';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.table';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.wide';
 
-console.log('Fancy tree #'+fancytree.version);
-
 /**
  * Workspace Tree by Martini dai Vincik
  * @param tree - jQuery request for an element with id "explorer"
@@ -22,8 +20,6 @@ export default class Tree {
     this.hierarchy = [];
     this.selected = '123';
     this.initTree();
-
-    console.log('Tree initiated successfully');
   }
 
   addItem(intoWhatId, block, blockName, id) {
@@ -36,16 +32,13 @@ export default class Tree {
      * @param blockName - block's folder name e.g. title-1, header-1
      * @param id - Block final id (with ~#3241 extensions)
      */
-    // console.log($('#explorer-tree').fancytree());
 
-    // console.log('TREE RECIEVED', intoWhatId, block, blockName, 'ID:', id);
-    console.log(this.hierarchy);
     try {
       /**
        * Check if block has been dragged from the templates tab
        * if not (re-sorted), isn't being added into explorer tree
        */
-      this.hierarchy.push({title: blockName, key: id});
+      this.hierarchy.push({title: blockName, key: id, parent: intoWhatId});
       $(block).removeAttr('draggedblock');
     } catch (err) {
       throw err;
@@ -53,7 +46,6 @@ export default class Tree {
   }
 
   setCanvasChildren(array) {
-    console.log('UPDATING TREE WITH', array);
     this.hierarchy = array;
     this.updateTree();
   }
