@@ -167,7 +167,7 @@ export default class Builder {
                 return that.blockName;
               });
               for (let i = 0; i < blocksArray.length; i++) {
-                console.log(blocksArray[i]);
+                // console.log(blocksArray[i]);
                 expectedTreeLayout.push({
                   title: blocksArray[i].attributes.blockname.value,
                   id: blocksArray[i].attributes.id.value});
@@ -176,10 +176,10 @@ export default class Builder {
               that.tree.addItem('canvas', ui.item[0],
                   that.blockName, ui.item[0].id);
             } else {
-              console.log('Block re-sorted, refreshing explorer (wip)');
-              console.log('BLOCKSARRAY', blocksArray);
+              // console.log('Block re-sorted, refreshing explorer (wip)');
+              // console.log('BLOCKSARRAY', blocksArray);
               for (let i = 0; i < blocksArray.length; i++) {
-                console.log(blocksArray[i]);
+                // console.log(blocksArray[i]);
                 expectedTreeLayout.push({
                   title: blocksArray[i].attributes.blockname.value,
                   id: blocksArray[i].attributes.id.value});

@@ -7,7 +7,7 @@ import 'jquery.fancytree/dist/modules/jquery.fancytree.glyph';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.table';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.wide';
 
-console.log('Fancy tree #'+fancytree.version);
+// console.log('Fancy tree #'+fancytree.version);
 
 /**
  * Workspace Tree by Martini dai Vincik
@@ -23,7 +23,7 @@ export default class Tree {
     this.selected = '123';
     this.initTree();
 
-    console.log('Tree initiated successfully');
+    // console.log('Tree initiated successfully');
   }
 
   addItem(intoWhatId, block, blockName, id) {
@@ -39,7 +39,7 @@ export default class Tree {
     // console.log($('#explorer-tree').fancytree());
 
     // console.log('TREE RECIEVED', intoWhatId, block, blockName, 'ID:', id);
-    console.log(this.hierarchy);
+    // console.log(this.hierarchy);
     try {
       /**
        * Check if block has been dragged from the templates tab
@@ -53,7 +53,7 @@ export default class Tree {
   }
 
   setCanvasChildren(array) {
-    console.log('UPDATING TREE WITH', array);
+    // console.log('UPDATING TREE WITH', array);
     this.hierarchy = array;
     this.updateTree();
   }
