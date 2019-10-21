@@ -108,16 +108,27 @@ export default class Tree {
       const currentWord = treearray[Object.keys(treearray)[i]];
       entries.push(currentWord);
     }
-    console.log(entries);
     console.log('ENTRIES', entries);
-    $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
-        .applyPatch(
-            {title: 'project-name',
-              key: 'canvas',
-              folder: true,
-              expanded: true,
-            },
-            {title: 'project-name', key: 'canvas', children: entries});
+    // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
+    //     .applyPatch([
+    //       {title: 'project-name',
+    //         key: 'canvas',
+    //         folder: true,
+    //         expanded: true,
+
+    //       },
+    //       this.treeArr]);
+    // $('#explorer-tree').fancytree('getTree').
+    //     getNodeByKey('canvas').children = entries;
+    console.log($('#explorer-tree').fancytree('getTree').
+        getNodeByKey('canvas').applyPatch({title: 'project-name',
+          key: 'canvas',
+          folder: true,
+          expanded: true,
+
+        },
+        this.treeArr));
+    $('#explorer-tree').fancytree('getTree').reload(false);
 
     $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
         setExpanded(true);
