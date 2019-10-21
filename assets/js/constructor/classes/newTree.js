@@ -59,10 +59,20 @@ export default class Tree {
   }
 
   updateTree() {
+    // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
+    //     .removeChildren();
+    // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
+    //     .addChildren(this.hierarchy);
+    // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
+    //     setExpanded(true);
     $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
-        .removeChildren();
-    $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
-        .addChildren(this.hierarchy);
+        .applyPatch({
+          key: 'canvas',
+          title: 'project-name',
+          toggleEffect: false,
+          folder: true,
+          expanded: true,
+          children: this.hierarchy});
     $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
         setExpanded(true);
   }
@@ -74,7 +84,7 @@ export default class Tree {
     const that = this;
     $(function() {
       $('#explorer-tree').fancytree({
-        extensions: ['dnd5', 'edit', 'glyph', 'wide'],
+        extensions: ['dnd5', 'glyph'],
         glyph: {
           preset: 'awesome4',
           map: {
@@ -97,6 +107,7 @@ export default class Tree {
         source: [
           {title: 'project-name',
             key: 'canvas',
+            toggleEffect: false,
             folder: true,
             expanded: true,
             children: that.hierarchy }],
