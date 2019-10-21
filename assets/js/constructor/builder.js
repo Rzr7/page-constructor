@@ -148,7 +148,7 @@ export default class Builder {
           // that.tree.sortTree();
 
           const blocksArray = $('.canvas').children();
-          const expectedTreeLayout = [];
+          const expectedTreeLayout = {};
           /**
            * make an array looking like this
            * arr = [
@@ -166,19 +166,40 @@ export default class Builder {
               $(ui.item[0]).attr('blockname', () => {
                 return that.blockName;
               });
-              that.tree.addItem('canvas', ui.item[0],
-                  that.blockName, ui.item[0].id);
+              for (let i = 0; i < blocksArray.length; i++) {
+              //   expectedTreeLayout.push({
+              //     title: blocksArray[i].attributes.blockname.value,
+              //     id: blocksArray[i].attributes.id.value});
+              // }
+                expectedTreeLayout[i] = {
+                  title: blocksArray[i].attributes.blockname.value,
+                  id: blocksArray[i].attributes.id.value,
+                };
+                that.tree.setCanvasChildren(expectedTreeLayout);
+                console.log('expected layout', expectedTreeLayout);
+                that.tree.catchArrays(blocksArray, expectedTreeLayout);
+                that.tree.addItem('canvas', ui.item[0],
+                    that.blockName, ui.item[0].id);
+              }
             } else {
+              for (let i = 0; i < blocksArray.length; i++) {
+              //   expectedTreeLayout.push({
+              //     title: blocksArray[i].attributes.blockname.value,
+              //     id: blocksArray[i].attributes.id.value});
+              // }
+                expectedTreeLayout[i] = {
+                  title: blocksArray[i].attributes.blockname.value,
+                  id: blocksArray[i].attributes.id.value};
+              }
+              that.tree.setCanvasChildren(expectedTreeLayout);
+              console.log('expected layout', expectedTreeLayout);
+              that.tree.catchArrays(blocksArray, expectedTreeLayout);
+              that.tree.sortTree();
             }
           } catch (err) {
             throw err;
           }
-          for (let i = 0; i < blocksArray.length; i++) {
-            expectedTreeLayout.push({
-              title: blocksArray[i].attributes.blockname.value,
-              id: blocksArray[i].attributes.id.value});
-          }
-          that.tree.setCanvasChildren(expectedTreeLayout);
+          // that.tree.sortTree(blocksArray, expectedTreeLayout);
         },
 
       });
