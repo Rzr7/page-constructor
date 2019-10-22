@@ -6,7 +6,8 @@ import 'jquery.fancytree/dist/modules/jquery.fancytree.dnd5';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.glyph';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.table';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.wide';
-import Utils from './utils';
+
+// console.log('Fancy tree #'+fancytree.version);
 
 /**
  * Workspace Tree by Martini dai Vincik
@@ -20,11 +21,9 @@ export default class Tree {
     this.tree = tree;
     this.hierarchy = [];
     this.selected = '123';
-    this.newestBlock;
-    this.htmlArr;
-    this.treeArr;
-    this.tempList = {};
     this.initTree();
+
+    // console.log('Tree initiated successfully');
   }
 
   addItem(intoWhatId, block, blockName, id) {
@@ -37,106 +36,26 @@ export default class Tree {
      * @param blockName - block's folder name e.g. title-1, header-1
      * @param id - Block final id (with ~#3241 extensions)
      */
+    // console.log($('#explorer-tree').fancytree());
 
+    // console.log('TREE RECIEVED', intoWhatId, block, blockName, 'ID:', id);
+    // console.log(this.hierarchy);
     try {
       /**
        * Check if block has been dragged from the templates tab
        * if not (re-sorted), isn't being added into explorer tree
        */
-      console.log('ADDITEM', intoWhatId, block, blockName, id);
-      const toPush = {title: blockName, key: id, parent: intoWhatId};
-      this.newestBlock = toPush;
-      console.log('verify before sort');
-      console.log(this.htmlArr);
-      console.log(this.treeArr);
-      // this.tempList.assign(this.tempList, toPush);
-      this.sortTree();
+      this.hierarchy.push({title: blockName, key: id});
       $(block).removeAttr('draggedblock');
     } catch (err) {
       throw err;
     }
   }
 
-  catchArrays(array1, array2) {
-    console.log(array1, array2);
-    this.htmlArr = array1;
-    this.treeArr = array2;
-  }
-
   setCanvasChildren(array) {
+    // console.log('UPDATING TREE WITH', array);
     this.hierarchy = array;
-    // this.updateTree();
-    console.log('SetCanvasChildren array', array);
-  }
-
-  /**
-   * Tree recieves info what it should look like
-   * and compares to what it contains now.
-   * if it was in-canvas sorting - replace layout,
-   * if it was a new block added - first add it,
-   * then compare again
-   *
- * @param {Array} htmlArr - is actual canvas array with divs (Block.html)
- * @param {Array} treeArr - needs update, always being sorted last
- */
-  sortTree() {
-    console.log('-------DEBUG-------');
-    console.log('treeArr', this.treeArr, '/n/nhtmlArr', this.htmlArr );
-    const expectedResult = {};
-    let i = 0;
-    if (this.hierarchy.length > 0) {
-      this.hierarchy.map((item) => {
-        expectedResult[i] = item;
-        i++;
-      });
-    }
-    console.log($('#'+this.newestBlock.key));
-    console.log('THIS NEWEST', this.newestBlock, $('#'+this.newestBlock.key) );
-    console.log('DOES IT ECEN EXIST?!?', this.newestBlock.key);
-    if ($('#'+this.newestBlock.key).attr('draggedblock')) {
-      console.log('EXP', expectedResult);
-      expectedResult[expectedResult.length] = this.newestBlock;
-    }
-    console.log('expectedResult', expectedResult);
-
-    console.log('Applying patch with following content:', this.treeArr);
-    // const toPass = {0: this.treeArr};
-    const that = this;
-    const treearray = this.treeArr;
-    const entries = [];
-    for (let i = 0; i < Object.keys(treearray).length; i++) {
-      const currentWord = treearray[Object.keys(treearray)[i]];
-      entries.push(currentWord);
-    }
-    console.log('ENTRIES', entries);
-    // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
-    //     .applyPatch([
-    //       {title: 'project-name',
-    //         key: 'canvas',
-    //         folder: true,
-    //         expanded: true,
-
-    //       },
-    //       this.treeArr]);
-    // $('#explorer-tree').fancytree('getTree').
-    //     getNodeByKey('canvas').children = entries;
-    console.log($('#explorer-tree').fancytree('getTree').
-        getNodeByKey('canvas').applyPatch({title: 'project-name',
-          key: 'canvas',
-          folder: true,
-          expanded: true,
-
-        },
-        this.treeArr));
-    $('#explorer-tree').fancytree('getTree').reload(false);
-
-    $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
-        setExpanded(true);
-    // console.log('-------DEBUG-------');
-  }
-
-  addNode(title, key) {
-    //
+    this.updateTree();
   }
 
   updateTree() {
@@ -146,7 +65,16 @@ export default class Tree {
     //     .addChildren(this.hierarchy);
     // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
     //     setExpanded(true);
-    // this.sortTree(null, this.hierarchy);
+    $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
+        .applyPatch({
+          key: 'canvas',
+          title: 'project-name',
+          toggleEffect: false,
+          folder: true,
+          expanded: true,
+          children: this.hierarchy});
+    $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
+        setExpanded(true);
   }
 
   initTree() {
@@ -156,7 +84,7 @@ export default class Tree {
     const that = this;
     $(function() {
       $('#explorer-tree').fancytree({
-        extensions: ['dnd5', 'edit', 'glyph', 'wide'],
+        extensions: ['dnd5', 'glyph'],
         glyph: {
           preset: 'awesome4',
           map: {
@@ -179,6 +107,7 @@ export default class Tree {
         source: [
           {title: 'project-name',
             key: 'canvas',
+            toggleEffect: false,
             folder: true,
             expanded: true,
             children: that.hierarchy }],
