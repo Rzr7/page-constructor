@@ -148,7 +148,7 @@ export default class Builder {
           // that.tree.sortTree();
 
           const blocksArray = $('.canvas').children();
-          const expectedTreeLayout = {};
+          const expectedTreeLayout = [];
           /**
            * make an array looking like this
            * arr = [
@@ -158,6 +158,8 @@ export default class Builder {
 
 
           try {
+            const expectedTreeLayout = [];
+
             if (ui.item[0].hasAttribute('draggedblock')) {
               $(ui.item[0]).attr('id', () => {
                 const idCode = '#'+Math.ceil(Math.random() * 9999);
@@ -167,39 +169,28 @@ export default class Builder {
                 return that.blockName;
               });
               for (let i = 0; i < blocksArray.length; i++) {
-              //   expectedTreeLayout.push({
-              //     title: blocksArray[i].attributes.blockname.value,
-              //     id: blocksArray[i].attributes.id.value});
-              // }
-                expectedTreeLayout[i] = {
+                // console.log(blocksArray[i]);
+                expectedTreeLayout.push({
                   title: blocksArray[i].attributes.blockname.value,
-                  id: blocksArray[i].attributes.id.value,
-                };
-                that.tree.setCanvasChildren(expectedTreeLayout);
-                console.log('expected layout', expectedTreeLayout);
-                that.tree.catchArrays(blocksArray, expectedTreeLayout);
-                that.tree.addItem('canvas', ui.item[0],
-                    that.blockName, ui.item[0].id);
-              }
-            } else {
-              for (let i = 0; i < blocksArray.length; i++) {
-              //   expectedTreeLayout.push({
-              //     title: blocksArray[i].attributes.blockname.value,
-              //     id: blocksArray[i].attributes.id.value});
-              // }
-                expectedTreeLayout[i] = {
-                  title: blocksArray[i].attributes.blockname.value,
-                  id: blocksArray[i].attributes.id.value};
+                  id: blocksArray[i].attributes.id.value});
               }
               that.tree.setCanvasChildren(expectedTreeLayout);
-              console.log('expected layout', expectedTreeLayout);
-              that.tree.catchArrays(blocksArray, expectedTreeLayout);
-              that.tree.sortTree();
+              that.tree.addItem('canvas', ui.item[0],
+                  that.blockName, ui.item[0].id);
+            } else {
+              // console.log('Block re-sorted, refreshing explorer (wip)');
+              // console.log('BLOCKSARRAY', blocksArray);
+              for (let i = 0; i < blocksArray.length; i++) {
+                // console.log(blocksArray[i]);
+                expectedTreeLayout.push({
+                  title: blocksArray[i].attributes.blockname.value,
+                  id: blocksArray[i].attributes.id.value});
+              }
+              that.tree.setCanvasChildren(expectedTreeLayout);
             }
           } catch (err) {
             throw err;
           }
-          // that.tree.sortTree(blocksArray, expectedTreeLayout);
         },
 
       });
