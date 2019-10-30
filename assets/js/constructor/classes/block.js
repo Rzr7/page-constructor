@@ -19,7 +19,7 @@ export default class Block {
     // this.assignId(); // WIP
     this.initHtml();
     this.parseVariables();
-    console.log(this);
+    // console.log(this);
   }
 
   /**
@@ -61,6 +61,7 @@ export default class Block {
    */
   initDefaults() {
     this.defaults = this.getOption('variables');
+    console.log('THIS.DEFAULTS', this.defaults);
   }
 
   /**
@@ -97,6 +98,10 @@ export default class Block {
       return url;
     }
     return Utils.get(url);
+  }
+
+  getBlockFromId(blockId) {
+    return 
   }
 
   /**

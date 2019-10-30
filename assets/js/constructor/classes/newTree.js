@@ -6,6 +6,7 @@ import 'jquery.fancytree/dist/modules/jquery.fancytree.dnd5';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.glyph';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.table';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.wide';
+import Builder from '../builder';
 
 // console.log('Fancy tree #'+fancytree.version);
 
@@ -17,9 +18,10 @@ import 'jquery.fancytree/dist/modules/jquery.fancytree.wide';
  */
 
 export default class Tree {
-  constructor(tree) {
+  constructor(tree, builder) {
     this.tree = tree;
     this.hierarchy = [];
+    this.builder = builder;
     this.selected = '123';
     this.initTree();
 
@@ -58,6 +60,12 @@ export default class Tree {
     this.updateTree();
   }
 
+
+  showSelectedProperties() {
+    console.log($('#explorer-tree').fancytree('getTree').getSelectedNodes());
+  }
+
+
   updateTree() {
     // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
     //     .removeChildren();
@@ -69,9 +77,9 @@ export default class Tree {
         .applyPatch({
           key: 'canvas',
           title: 'project-name',
-          toggleEffect: false,
+          // toggleEffect: false,
           folder: true,
-          expanded: true,
+          // expanded: true,
           children: this.hierarchy});
     $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
         setExpanded(true);
@@ -111,6 +119,11 @@ export default class Tree {
             folder: true,
             expanded: true,
             children: that.hierarchy }],
+
+        activate: function(event, data) {
+          console.log(event, data);
+          that.builder.updateProperties(data.node.data.id);
+        },
 
       });
     });

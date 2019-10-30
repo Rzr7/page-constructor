@@ -5,5 +5,41 @@
   "blocks": [
     "title-1",
     "header-1"
-  ]
+  ],
+  "comment": {
+    "div property should also apply to spans, text to p, h1-6, td": 0
+  },
+  "properties": {
+    "div": [
+      "background-image", 
+      "background-color", 
+      "background",
+      "width",
+      "height",
+      "max-width",
+      "max-height",
+      "min-width",
+      "min-height",
+      "display",
+      "position",
+      "border",
+      "margin",
+      "padding",
+      "color",
+      "overflow",
+      "wrap-text"
+    ],
+    "text": [
+      "display",
+      "position",
+      "border",
+      "margin",
+      "padding",
+      "color",
+      "font-size",
+      "font-family",
+      "font-variant",
+      "font-decoration"
+    ]
+  }
 }
