@@ -158,6 +158,8 @@ export default class Builder {
 
 
           try {
+            const expectedTreeLayout = [];
+
             if (ui.item[0].hasAttribute('draggedblock')) {
               $(ui.item[0]).attr('id', () => {
                 const idCode = '#'+Math.ceil(Math.random() * 9999);
