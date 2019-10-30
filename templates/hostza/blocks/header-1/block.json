@@ -1,0 +1,40 @@
+{
+  "name": "Header 1",
+  "id": "hostza_header_1",
+  "version": "1.0",
+  "alt": "Header block",
+  "category": "header",
+  "thumbnail": "thumbnail.png",
+  "variables": {
+    "header_small_text": {
+      "type": "text",
+      "value": "The Best Domain & Hosting Provider In The Area",
+      "defaults": {
+        "color": "#00D363",
+        "font-size": "18px",
+        "font-weight": 400
+      }
+    },
+    "header_big_text": {
+      "type": "text",
+      "value": "Go Big with your next Domain",
+      "defaults": {
+        "color": "#FFFFFF",
+        "font-size": "60px",
+        "font-weight": 400
+      }
+    },
+    "form_action_url": {
+      "type": "url",
+      "value": "#"
+    },
+    "form_input_placeholder": {
+      "type": "text",
+      "value": "Find your domain"
+    },
+    "form_button_text": {
+      "type": "text",
+      "value": "search"
+    }
+  }
+}

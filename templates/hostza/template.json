@@ -1,0 +1,14 @@
+{
+  "name": "Hostza",
+  "description": "Hostza template",
+  "author": "Colorlib",
+  "styles": [
+    "bootstrap.css",
+    "styles.css"
+  ],
+  "blocks": [
+    "header-1",
+    "header-2",
+    "features"
+  ]
+}
