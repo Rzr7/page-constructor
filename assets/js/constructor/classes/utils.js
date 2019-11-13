@@ -70,4 +70,8 @@ export default class Utils {
       confirmButtonText: 'Ok',
     });
   }
+
+  // static sortTreeArrayAsInCanvas(htmlArray, treeArray) {
+  //   console.log('htmlArray:', htmlArray, '\n\ntreeArray', treeArray);
+  // }
 }

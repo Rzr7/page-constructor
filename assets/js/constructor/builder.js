@@ -148,7 +148,7 @@ export default class Builder {
           // that.tree.sortTree();
 
           const blocksArray = $('.canvas').children();
-          const expectedTreeLayout = [];
+          const expectedTreeLayout = {};
           /**
            * make an array looking like this
            * arr = [
@@ -194,12 +194,7 @@ export default class Builder {
           } catch (err) {
             throw err;
           }
-          for (let i = 0; i < blocksArray.length; i++) {
-            expectedTreeLayout.push({
-              title: blocksArray[i].attributes.blockname.value,
-              id: blocksArray[i].attributes.id.value});
-          }
-          that.tree.setCanvasChildren(expectedTreeLayout);
+          // that.tree.sortTree(blocksArray, expectedTreeLayout);
         },
 
       });

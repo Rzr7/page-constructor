@@ -19,6 +19,7 @@ export default class Tree {
     this.tree = tree;
     this.hierarchy = [];
     this.selected = '123';
+
     this.initTree();
   }
 
@@ -39,6 +40,7 @@ export default class Tree {
        * if not (re-sorted), isn't being added into explorer tree
        */
       this.hierarchy.push({title: blockName, key: id, parent: intoWhatId});
+
       $(block).removeAttr('draggedblock');
     } catch (err) {
       throw err;
@@ -61,14 +63,14 @@ export default class Tree {
         .applyPatch({
           // key: 'canvas',
           // title: 'project-name',
-          toggleEffect: false,
-          folder: true,
+          // toggleEffect: false,
+          // folder: true,
           expanded: true,
           children: this.hierarchy});
     $('.ui-effects-placeholder').removeAttr('style');
     $('.ul-fancytree-container').css('border', 'none');
-    // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
-    //     setExpanded(true);
+    $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
+        setExpanded(true);
   }
 
   initTree() {
@@ -103,7 +105,7 @@ export default class Tree {
             key: 'canvas',
             toggleEffect: false,
             folder: true,
-            expanded: true,
+            // expanded: true,
             children: that.hierarchy }],
 
       });
