@@ -191,6 +191,12 @@ export default class Builder {
           } catch (err) {
             throw err;
           }
+          for (let i = 0; i < blocksArray.length; i++) {
+            expectedTreeLayout.push({
+              title: blocksArray[i].attributes.blockname.value,
+              id: blocksArray[i].attributes.id.value});
+          }
+          that.tree.setCanvasChildren(expectedTreeLayout);
         },
 
       });
