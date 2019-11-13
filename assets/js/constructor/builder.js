@@ -148,7 +148,7 @@ export default class Builder {
           // that.tree.sortTree();
 
           const blocksArray = $('.canvas').children();
-          const expectedTreeLayout = {};
+          const expectedTreeLayout = [];
           /**
            * make an array looking like this
            * arr = [
@@ -194,7 +194,6 @@ export default class Builder {
           } catch (err) {
             throw err;
           }
-          // that.tree.sortTree(blocksArray, expectedTreeLayout);
         },
 
       });

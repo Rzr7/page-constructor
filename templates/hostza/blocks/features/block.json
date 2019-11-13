@@ -1,0 +1,57 @@
+{
+  "name": "Features",
+  "id": "hostza_features_1",
+  "version": "1.0",
+  "alt": "Features block",
+  "category": "content",
+  "thumbnail": "thumbnail.png",
+  "variables": {
+    "header_text": {
+      "type": "text",
+      "value": "Core Features",
+      "defaults": {
+        "color": "#2E004B",
+        "font-size": "24px"
+      }
+    },
+
+    "feature_1_heading": {
+      "type": "text",
+      "value": "Free Domain for 1st Year",
+      "defaults": {
+        "color": "#1F1F1F",
+        "font-size": "20px"
+      }
+    },
+    "feature_1_description": {
+      "type": "text",
+      "value": "Our set he for firmament morning sixth subdue darkness creeping gathered\ndivide our let god moving.",
+      "defaults": {
+        "color": "#919191",
+        "font-size": "16px"
+      }
+    },
+
+    "header_big_text": {
+      "type": "text",
+      "value": "Go Big with your next Domain",
+      "defaults": {
+        "color": "#FFFFFF",
+        "font-size": "60px",
+        "font-weight": 400
+      }
+    },
+    "form_action_url": {
+      "type": "url",
+      "value": "#"
+    },
+    "form_input_placeholder": {
+      "type": "text",
+      "value": "Find your domain"
+    },
+    "form_button_text": {
+      "type": "text",
+      "value": "search"
+    }
+  }
+}

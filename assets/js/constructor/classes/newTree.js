@@ -19,8 +19,9 @@ export default class Tree {
     this.tree = tree;
     this.hierarchy = [];
     this.selected = '123';
-
     this.initTree();
+
+    // console.log('Tree initiated successfully');
   }
 
   addItem(intoWhatId, block, blockName, id) {
@@ -33,7 +34,10 @@ export default class Tree {
      * @param blockName - block's folder name e.g. title-1, header-1
      * @param id - Block final id (with ~#3241 extensions)
      */
+    // console.log($('#explorer-tree').fancytree());
 
+    // console.log('TREE RECIEVED', intoWhatId, block, blockName, 'ID:', id);
+    // console.log(this.hierarchy);
     try {
       /**
        * Check if block has been dragged from the templates tab
@@ -48,6 +52,7 @@ export default class Tree {
   }
 
   setCanvasChildren(array) {
+    // console.log('UPDATING TREE WITH', array);
     this.hierarchy = array;
     this.updateTree();
   }
