@@ -158,6 +158,8 @@ export default class Builder {
 
 
           try {
+            const expectedTreeLayout = [];
+
             if (ui.item[0].hasAttribute('draggedblock')) {
               $(ui.item[0]).attr('id', () => {
                 const idCode = '#'+Math.ceil(Math.random() * 9999);
@@ -166,9 +168,25 @@ export default class Builder {
               $(ui.item[0]).attr('blockname', () => {
                 return that.blockName;
               });
+              for (let i = 0; i < blocksArray.length; i++) {
+                // console.log(blocksArray[i]);
+                expectedTreeLayout.push({
+                  title: blocksArray[i].attributes.blockname.value,
+                  id: blocksArray[i].attributes.id.value});
+              }
+              that.tree.setCanvasChildren(expectedTreeLayout);
               that.tree.addItem('canvas', ui.item[0],
                   that.blockName, ui.item[0].id);
             } else {
+              // console.log('Block re-sorted, refreshing explorer (wip)');
+              // console.log('BLOCKSARRAY', blocksArray);
+              for (let i = 0; i < blocksArray.length; i++) {
+                // console.log(blocksArray[i]);
+                expectedTreeLayout.push({
+                  title: blocksArray[i].attributes.blockname.value,
+                  id: blocksArray[i].attributes.id.value});
+              }
+              that.tree.setCanvasChildren(expectedTreeLayout);
             }
           } catch (err) {
             throw err;

@@ -17,18 +17,20 @@ body {
     height: 50px;
     background-color: rgb(51, 51, 51);
     font-variant: small-caps;
-    font-size: 1rem;
-    display: flex;
+    font-size: 1.2rem;
+    font-weight: 800;
+    display: block;
     overflow: hidden;
 }
 
 .menu h1 {
     /* margin-left: 80px; */
     /* margin-bottom: 25px; */
-    text-align: left;
+    text-align: center;
     width: auto;
-    border-bottom: 3px solid rgb(139, 49, 49);
-    color: rgb(139, 49, 49);
+    font-family: 'Barlow', sans-serif;
+    // border-bottom: 3px solid rgb(139, 49, 49);
+    color: #1d55aa;
     transition: color 0.1s ease-in-out 0s;
 
 }
@@ -55,7 +57,7 @@ body {
 }
 
 
-.toolbar-blocks-content {
+#toolbar-blocks-content {
     background-color: rgb(51, 51, 51);
     color: white;
     padding-top: 15px;
@@ -63,6 +65,10 @@ body {
     width: 100%;
     max-width: 20vw;
     height: calc(100vh - 50px);
+}
+
+#toolbar-tools-content {
+    margin-top: 15px;
 }
 
 .pcons-block-preview-image {
