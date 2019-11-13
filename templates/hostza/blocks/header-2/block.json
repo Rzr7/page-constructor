@@ -1,0 +1,19 @@
+{
+  "name": "Header 2",
+  "id": "hostza_header_2",
+  "version": "1.0",
+  "alt": "Header block",
+  "category": "header",
+  "thumbnail": "thumbnail.png",
+  "variables": {
+    "header": {
+      "type": "text",
+      "value": "Header",
+      "defaults": {
+        "color": "#FFF",
+        "font-size": "60px",
+        "font-weight": 900
+      }
+    }
+  }
+}
