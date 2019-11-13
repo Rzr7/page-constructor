@@ -61,10 +61,12 @@ export default class Tree {
         .applyPatch({
           // key: 'canvas',
           // title: 'project-name',
-          // // toggleEffect: false,
-          // folder: true,
+          toggleEffect: false,
+          folder: true,
           expanded: true,
           children: this.hierarchy});
+    $('.ui-effects-placeholder').removeAttr('style');
+    $('.ul-fancytree-container').css('border', 'none');
     // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
     //     setExpanded(true);
   }
@@ -99,7 +101,7 @@ export default class Tree {
         source: [
           {title: 'project-name',
             key: 'canvas',
-            // toggleEffect: false,
+            toggleEffect: false,
             folder: true,
             expanded: true,
             children: that.hierarchy }],

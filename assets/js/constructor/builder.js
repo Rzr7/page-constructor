@@ -160,6 +160,9 @@ export default class Builder {
           try {
             const expectedTreeLayout = [];
 
+            /*
+            * Assign a random ID to a block if it is a new one
+            */
             if (ui.item[0].hasAttribute('draggedblock')) {
               $(ui.item[0]).attr('id', () => {
                 const idCode = '#'+Math.ceil(Math.random() * 9999);
