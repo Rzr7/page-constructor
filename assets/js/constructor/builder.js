@@ -10,6 +10,8 @@ import Rectangle from './classes/tools/rectangle.js';
 import Text from './classes/tools/text.js';
 import Tree from './classes/newTree.js';
 import Tool from './classes/tools/tool.js';
+import Properties from './classes/properties.js';
+import Canvas from './classes/canvas.js';
 import 'jquery-ui-bundle';
 import Block from './classes/block.js';
 
@@ -40,15 +42,21 @@ export default class Builder {
     this.toolbarHtml = toolbarHtml;
     this.options = options;
     this.canvas = canvas;
+    this.CanvasObject;
     this.tree;
     this.lastBlockIndex = 0;
     this.template = {};
     this.toolbar = {};
+
+
     try {
       this.initTemplate();
       this.loadAssets();
+      this.initProperties();
       this.initLayout();
       this.initToolbar();
+      this.initCanvas();
+      this.initListeners();
       this.initTree();
       this.initDragAndDrop();
     } catch (err) {
@@ -58,6 +66,7 @@ export default class Builder {
         Utils.showError(err);
       }
     }
+    console.log('this template (builder)', this.template);
   }
 
   /**
@@ -68,11 +77,24 @@ export default class Builder {
    * Tool ID is a unique ID for the tool
    */
 
+  initListeners() {
+    const that = this;
+    $(document).click((e) => {
+      if (e.target.classList.contains('pcon-block')) {
+        that.propertiesSection.setBlock(e.target);
+      }
+    });
+  }
+
   initToolbar() {
     this.toolbar = new Toolbar($('#toolbar'), this.template);
     this.toolbar.add(new Rectangle('Rectangle', 0, '', 'rect-tool'));
     this.toolbar.add(new Text('Text', 1, '', 'text-tool'));
     this.toolbar.initLayout();
+  }
+
+  initCanvas() {
+    this.CanvasObject = new Canvas($('#canvas'));
   }
 
   /**
@@ -96,10 +118,20 @@ export default class Builder {
   }
 
   /**
+   * Init properties tab
+   */
+  initProperties() {
+    this.propertiesSection = new Properties(this);
+  }
+  updateProperties(block) {
+    this.propertiesSection.setBlock(block);
+  }
+
+  /**
    * Load the tree layout
    */
   initTree() {
-    this.tree = new Tree($('#explorer-tree'));
+    this.tree = new Tree($('#explorer-tree'), this);
   }
 
   /**
@@ -111,6 +143,7 @@ export default class Builder {
         this.properties.paths.templates
     );
   }
+
 
   /**
    * Drag and drop initializer.
@@ -180,6 +213,7 @@ export default class Builder {
               that.tree.setCanvasChildren(expectedTreeLayout);
               that.tree.addItem('canvas', ui.item[0],
                   that.blockName, ui.item[0].id);
+              that.CanvasObject.addToList(that.template.blocks[ui.item[0].id]);
             } else {
               // console.log('Block re-sorted, refreshing explorer (wip)');
               // console.log('BLOCKSARRAY', blocksArray);
@@ -190,6 +224,7 @@ export default class Builder {
                   id: blocksArray[i].attributes.id.value});
               }
               that.tree.setCanvasChildren(expectedTreeLayout);
+              that.initListeners();
             }
           } catch (err) {
             throw err;

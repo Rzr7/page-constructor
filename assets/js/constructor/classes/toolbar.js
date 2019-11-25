@@ -25,6 +25,10 @@ export default class Toolbar {
     this.makeTools();
   }
 
+  getBlocksArray() {
+    return this.blocksArray;
+  }
+
   actions() {
     /**
      * Switches Block & Tools buttons, showing and hiding

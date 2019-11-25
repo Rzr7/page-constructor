@@ -227,4 +227,49 @@ ul {
 
 .pcon-block {
     width: 100%;
+    position: relative;
+    transition: .2s;
+
+}
+
+.pcon-block:not([draggedblock])::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 50;
+    box-sizing: border-box;
+}
+.pcon-block:hover:after {
+    background-color: #2d4f971f;
+    
+}
+
+.param-entry {
+    font-size: 2rem;
+    color: white;
+    // background-color: rgb(35,35,35);
+    display: flex;
+}
+
+body {
+  background-color: rgb(31,31,31);
+}
+
+.param-entry h6 {
+   padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.dropdown .btn {
+  height: fit-content;
+  background-color: rgb(31,31,31);
+}
+
+.dropdown .btn:focus {
+  background-color: rgb(51,51,51);
 }

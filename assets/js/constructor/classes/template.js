@@ -30,6 +30,7 @@ export default class Template {
       throw new Error('Invalid template/template path');
     }
     this.templateInfo = templateInfo;
+    console.log('this template info', this.templateInfo);
   }
 
   /**
@@ -44,11 +45,14 @@ export default class Template {
         new Date().getMilliseconds());
       if (!blockInfo) {
         throw new Error('Invalid block ("' + block + '")');
-      }
+      };
+      console.log('FIND PROPS HERE', that);
+      const whatINeed=that.templateInfo.properties;
       that.createBlock(
           block,
           blockInfo,
-          blocksPath + block
+          blocksPath + block,
+          whatINeed
       );
     });
   }
@@ -58,9 +62,10 @@ export default class Template {
    * @param {String} blockId - Block name.
    * @param {String} blockData - Block json data.
    * @param {String} url - Path to block folder.
+   * @param {Object} props - template.properties
    */
-  createBlock(blockId, blockData, url) {
-    this.blocks[blockId] = new Block(blockId, blockData, url);
+  createBlock(blockId, blockData, url, props) {
+    this.blocks[blockId] = new Block(blockId, blockData, url, props);
   }
 
   /**

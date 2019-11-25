@@ -6,11 +6,24 @@
   "category": "typography",
   "thumbnail": "thumbnail.png",
   "variables": {
-    "header": {
-      "type": "text",
-      "value": "Header",
+    "root": {
+      "type": "div",
+      "path": "#initial_template_header_1.pcon-header-1-block",
       "defaults": {
-        "color": "#FFF"
+        "background-color": "#5377d8",
+        "height": "100px",
+        "font-size": "1.3rem",
+        "color": "white"
+      }
+    },
+    "h1": {
+      "defaultValue": "Header",
+      "type": "text",
+      "path": "#initial_template_header_1 h1",
+      "path2?": "#initial_template_header_1.pcon-header-1-h1",
+      "value": "Header example",
+      "defaults": {
+        "font-size": "1em"
       }
     }
   }

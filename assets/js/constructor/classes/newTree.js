@@ -6,6 +6,7 @@ import 'jquery.fancytree/dist/modules/jquery.fancytree.dnd5';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.glyph';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.table';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.wide';
+import Builder from '../builder';
 
 /**
  * Workspace Tree by Martini dai Vincik
@@ -15,9 +16,10 @@ import 'jquery.fancytree/dist/modules/jquery.fancytree.wide';
  */
 
 export default class Tree {
-  constructor(tree) {
+  constructor(tree, builder) {
     this.tree = tree;
     this.hierarchy = [];
+    this.builder = builder;
     this.selected = '123';
     this.initTree();
 
@@ -56,6 +58,12 @@ export default class Tree {
     this.hierarchy = array;
     this.updateTree();
   }
+
+
+  showSelectedProperties() {
+    console.log($('#explorer-tree').fancytree('getTree').getSelectedNodes());
+  }
+
 
   updateTree() {
     // $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
@@ -112,6 +120,11 @@ export default class Tree {
             folder: true,
             // expanded: true,
             children: that.hierarchy }],
+
+        activate: function(event, data) {
+          console.log(event, data);
+          that.builder.updateProperties(data.node.data.id);
+        },
 
       });
     });
