@@ -8,8 +8,6 @@ import 'jquery.fancytree/dist/modules/jquery.fancytree.table';
 import 'jquery.fancytree/dist/modules/jquery.fancytree.wide';
 import Builder from '../builder';
 
-// console.log('Fancy tree #'+fancytree.version);
-
 /**
  * Workspace Tree by Martini dai Vincik
  * @param tree - jQuery request for an element with id "explorer"
@@ -47,7 +45,8 @@ export default class Tree {
        * Check if block has been dragged from the templates tab
        * if not (re-sorted), isn't being added into explorer tree
        */
-      this.hierarchy.push({title: blockName, key: id});
+      this.hierarchy.push({title: blockName, key: id, parent: intoWhatId});
+
       $(block).removeAttr('draggedblock');
     } catch (err) {
       throw err;
@@ -75,12 +74,14 @@ export default class Tree {
     //     setExpanded(true);
     $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas')
         .applyPatch({
-          key: 'canvas',
-          title: 'project-name',
+          // key: 'canvas',
+          // title: 'project-name',
           // toggleEffect: false,
-          folder: true,
-          // expanded: true,
+          // folder: true,
+          expanded: true,
           children: this.hierarchy});
+    $('.ui-effects-placeholder').removeAttr('style');
+    $('.ul-fancytree-container').css('border', 'none');
     $('#explorer-tree').fancytree('getTree').getNodeByKey('canvas').
         setExpanded(true);
   }
@@ -117,7 +118,7 @@ export default class Tree {
             key: 'canvas',
             toggleEffect: false,
             folder: true,
-            expanded: true,
+            // expanded: true,
             children: that.hierarchy }],
 
         activate: function(event, data) {

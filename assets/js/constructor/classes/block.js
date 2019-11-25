@@ -7,9 +7,19 @@ import Utils from './utils.js';
  * @param {String} path - Path to block folder.
  */
 export default class Block {
-  constructor(name, data, path, id) {
+  constructor(name, data, path, props) {
+    console.log('created block with properties',
+        name, data, path, props);
+    /**
+     * This thing is used to give certain elements
+     * properties that can be managed through the
+     * properties tab
+     * Like, divs should not have text values or font-size
+     * and a, p, h1-6 tags should not have background-image etc
+     */
+    this.properties = props;
     this.name = name;
-    this.id = id;
+    // this.id = id;
     this.data = data;
     this.path = path;
     this.blocksPath = '../blocks/';
@@ -19,6 +29,7 @@ export default class Block {
     // this.assignId(); // WIP
     this.initHtml();
     this.parseVariables();
+    // console.log(this.)
     // console.log(this);
   }
 
@@ -53,7 +64,8 @@ export default class Block {
     this.id = this.getOption('id');
     // eslint-disable-next-line prefer-const
     let blockHtml = Utils.get(this.path + '/block.html?');
-    const signedHtml = blockHtml.replace('>', ' id="'+this.id+'">');
+    const signedHtmlId = blockHtml.replace('>', ' id="'+this.id+'">');
+    // const signedHtml = blockHtml.replace('class="', 'class="pcon-block ');
   }
 
   /**
@@ -61,7 +73,7 @@ export default class Block {
    */
   initDefaults() {
     this.defaults = this.getOption('variables');
-    console.log('THIS.DEFAULTS', this.defaults);
+    console.log('THIS.DEFAULTS FOR', this.name, this.defaults);
   }
 
   /**
@@ -100,8 +112,13 @@ export default class Block {
     return Utils.get(url);
   }
 
+  /**
+   *
+   * @param {string} blockId - find block file by id (i.e. header_title_1)
+   * @return {param} this - temp
+   */
   getBlockFromId(blockId) {
-    return 
+    return this;
   }
 
   /**

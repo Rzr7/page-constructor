@@ -56,6 +56,7 @@ export default class Builder {
       this.initLayout();
       this.initToolbar();
       this.initCanvas();
+      this.initListeners();
       this.initTree();
       this.initDragAndDrop();
     } catch (err) {
@@ -75,6 +76,15 @@ export default class Builder {
    * Image is stored in assets/src/images and are all 64x64 (mby change later?)
    * Tool ID is a unique ID for the tool
    */
+
+  initListeners() {
+    const that = this;
+    $(document).click((e) => {
+      if (e.target.classList.contains('pcon-block')) {
+        that.propertiesSection.setBlock(e.target);
+      }
+    });
+  }
 
   initToolbar() {
     this.toolbar = new Toolbar($('#toolbar'), this.template);
@@ -111,7 +121,7 @@ export default class Builder {
    * Init properties tab
    */
   initProperties() {
-    this.propertiesSection = new Properties();
+    this.propertiesSection = new Properties(this);
   }
   updateProperties(block) {
     this.propertiesSection.setBlock(block);
@@ -133,6 +143,7 @@ export default class Builder {
         this.properties.paths.templates
     );
   }
+
 
   /**
    * Drag and drop initializer.
@@ -182,6 +193,9 @@ export default class Builder {
           try {
             const expectedTreeLayout = [];
 
+            /*
+            * Assign a random ID to a block if it is a new one
+            */
             if (ui.item[0].hasAttribute('draggedblock')) {
               $(ui.item[0]).attr('id', () => {
                 const idCode = '#'+Math.ceil(Math.random() * 9999);
@@ -210,6 +224,7 @@ export default class Builder {
                   id: blocksArray[i].attributes.id.value});
               }
               that.tree.setCanvasChildren(expectedTreeLayout);
+              that.initListeners();
             }
           } catch (err) {
             throw err;

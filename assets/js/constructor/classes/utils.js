@@ -71,6 +71,15 @@ export default class Utils {
     });
   }
 
+  static objToArray(object) {
+    const array = [];
+    Object.keys(object).map((el) => {
+      array.push(object[el]);
+    });
+    // console.log('CONVERTED', array);
+    return array;
+  }
+
   // static sortTreeArrayAsInCanvas(htmlArray, treeArray) {
   //   console.log('htmlArray:', htmlArray, '\n\ntreeArray', treeArray);
   // }

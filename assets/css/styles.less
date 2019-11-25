@@ -98,7 +98,17 @@ body {
     overflow-y: scroll;
     background-color: white;
     position: relative;
+    
 }
+
+.ui-effects-placeholder {
+    display: none !important;
+}
+
+li.fancytree-animating {
+	position: relative;
+}
+
 
 
 .toolbar {
@@ -190,15 +200,76 @@ body {
 }
 
 .ui.fancytree-container {
-    min-height: calc(50vh-50px) !important;
+    // min-height: calc(50vh-50px) !important;
     background-color: rgb(51, 51, 51);
     color: white;
+    border: none;
+}
+.ul.fancytree-container {
+    border: none !important;
 }
 
+.fancytree-container {
+    border: none;
+}
+
+ul {
+    border: none;
+}
+
+
+.ui-fancytree {
+    min-height: 300px !important;
+}
 .properties {
     max-height: 50%;
 }
 
 .pcon-block {
     width: 100%;
+    position: relative;
+    transition: .2s;
+
+}
+
+.pcon-block:not([draggedblock])::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 50;
+    box-sizing: border-box;
+}
+.pcon-block:hover:after {
+    background-color: #2d4f971f;
+    
+}
+
+.param-entry {
+    font-size: 2rem;
+    color: white;
+    // background-color: rgb(35,35,35);
+    display: flex;
+}
+
+body {
+  background-color: rgb(31,31,31);
+}
+
+.param-entry h6 {
+   padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.dropdown .btn {
+  height: fit-content;
+  background-color: rgb(31,31,31);
+}
+
+.dropdown .btn:focus {
+  background-color: rgb(51,51,51);
 }

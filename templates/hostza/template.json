@@ -10,5 +10,36 @@
     "header-1",
     "header-2",
     "features"
-  ]
+  ],
+  "properties": {
+    "div": [
+      {"background-image": {"type": "url"}},   
+      {"background-color": {"color" : "#ffffff"}},
+      {"width": {"size" : "15", "unit": "px"}},
+      {"height": {"size" : "15", "unit": "px"}},
+      {"max-height": {"size" : "15", "unit": "px"}},
+      {"max-width": {"size" : "15", "unit": "px"}},
+      {"min-width": {"size" : "15", "unit": "px"}},
+      {"min-height": {"size" : "15", "unit": "px"}},
+      {"display": {"options": ["block", "none", "flex", "inline", "flexbox", "inline-block"]}},
+      {"position": {"options":["relative", "absolute", "inherit"]}},
+      {"border": {"size" : "15", "unit": "px", "color": "#ffffff", "options": ["dotted", "solid"]}},
+      {"margin": {"size" : "15", "unit": "px"}},
+      {"padding": {"size" : "15", "unit": "px"}},
+      {"color": {"color": "#ffffff"}},
+      {"overflow": {"options": ["hidden"]}}
+    ],
+    "text": [
+      {"display": {"options": ["block", "none", "flex", "inline", "flexbox", "inline-block"]}},
+      {"position": {"options":["relative", "absolute", "inherit"]}},
+      {"border": {"size" : "15", "unit": "px", "color": "#ffffff", "options": ["dotted", "solid"]}},
+      {"margin": {"size" : "15", "unit": "px"}},
+      {"padding": {"size" : "15", "unit": "px"}},
+      {"color": {"color": "#ffffff"}},
+      {"font-size": {"size" : "15", "unit": "px"}},
+      {"font-family": {"options": ["fontFamilyOptions"]}},
+      {"font-variant": {"options": ["small-caps", "normal"]}},
+      {"font-decoration": {"options": ["underline", "none"]}}
+    ]
+  }
 }

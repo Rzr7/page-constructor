@@ -7,7 +7,7 @@ export default class Canvas {
 
   updateBlockList(newList) {
     this.blockList = newList;
-    console.log('New blocklist:', this.blockList);
+    // console.log('New blocklist:', this.blockList);
   }
 
   addToList(blockObject) {
