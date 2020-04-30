@@ -6,7 +6,7 @@
   "dependencies": {
     "debug": "latest",
     "dotenv": "^8.1.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-ui-bundle": "^1.12.1-migrate",
     "jquery.fancytree": "^2.32.0",
     "jqueryfiletree": "^2.1.4",
